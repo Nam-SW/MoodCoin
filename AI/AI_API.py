@@ -16,7 +16,6 @@ class MoodCoin:
         
 
     def prepocessing(self, data):
-        print(data)
         data = re.compile('[^ 가-힣]+').sub('', data.strip())
         print(data)
         data = self.otk.morphs(data, stem=True)
@@ -25,10 +24,15 @@ class MoodCoin:
         print(data)
         data = sum(self.tokenizer.texts_to_sequences(data), [])
         print(data)
+
+        word = {v:k for k,v in self.tokenizer.word_index.items()}
+        print(' '.join([word[key] for key in data]))
+
         data = pad_sequences([data], maxlen=self.maxlen)
         
         return data
         
 
 mc = MoodCoin()
-print(mc.prepocessing('아 오늘 시험치기 싫다ㅠㅠ'))
+while True:
+    print(list(mc.prepocessing(input())))
