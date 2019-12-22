@@ -4,6 +4,8 @@ from konlpy.tag import Okt
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
+from kor2vec import Kor2Vec
+
 
 class MoodCoin:
     def __init__(self, maxword=5000, maxlen=20):
@@ -34,5 +36,11 @@ class MoodCoin:
         
 
 mc = MoodCoin()
+kor2vec = Kor2Vec(embed_size=128)
+kor2vec.train("../path/corpus", batch_size=128) # takes some time
+kor2vec.save("../mode/path") # saving embedding
+kor2vec = Kor2Vec.load("../model/path")
 while True:
-    print(list(mc.prepocessing(input())))
+    text = input('입력: ')
+    print(kor2vec.embedding(text, numpy=True).shape)
+    print(list(mc.prepocessing(text)))
