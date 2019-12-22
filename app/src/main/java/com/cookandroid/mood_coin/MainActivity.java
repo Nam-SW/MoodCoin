@@ -1,5 +1,6 @@
 package com.cookandroid.mood_coin;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = new Intent(this, SplashActivity.class);
+        startActivity(intent);
         btn1 = (Button)findViewById(R.id.bt1);
         tv1 = (TextView)findViewById(R.id.test);
         msg = " ";
