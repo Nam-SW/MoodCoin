@@ -1,4 +1,4 @@
-package com.cookandroid.mood_coin;
+package com.example.myapplication;
 
 import org.junit.Test;
 
