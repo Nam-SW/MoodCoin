@@ -19,7 +19,7 @@
             android:elevation="10dp"
             android:background="@drawable/round_window"
             android:layout_width="400dp"
-            android:layout_height="330dp">
+            android:layout_height="360dp">
             <TextView
                 android:fontFamily="@font/nanum"
                 android:textColor="#35477D"
@@ -57,6 +57,7 @@
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    android:id="@+id/startbtn"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="13dp"
@@ -70,13 +71,21 @@
                 </Button>
             </LinearLayout>
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textColor="#8C8C8C"
                     android:text="Discord ID 알아내는 방법"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:src="@drawable/howto"
+                    android:layout_width="340dp"
+                    android:layout_height="70dp"/>
+                <TextView
+                    android:textSize="5.5pt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
