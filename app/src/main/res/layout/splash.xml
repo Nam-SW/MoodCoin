@@ -20,6 +20,6 @@
         android:id="@+id/iv2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="300dp"
         android:src="@drawable/title_underbar" />
 </LinearLayout>
