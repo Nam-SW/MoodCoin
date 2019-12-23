@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import firebase_admin
 from firebase_admin import credentials, db
+import json
 
 app = Flask(__name__)
 emotion = ['', '기쁨', '분노', '불안', '슬픔', '짜증']
@@ -14,18 +15,20 @@ firebase_admin.initialize_app(credentials.Certificate(DB_cred), {
 
 @app.route('/', methods=['POST'])
 def chat_update():
-    id = request.form['id']
-    talk = request.form['talk']
-    print(id, talk)
+    data = json.loads(str(request.data, encoding='utf8'))
+    id = str(data['id'])
+    talk = data['talk']
+    print(id + ': ' + talk)
 
     # pred = moodcoin.predict(talk)
     # if pred == 0: # 대화한 내용이 뜻이 없는 업무적 내용 등일 경우
     #     return
 
-    # data = db.reference(id).get()
-    # today = max(data.keys()) # 가장 최근 날짜
-    # data[today][emotion[1]] += 1
-    # db.reference(id).child(today).set(data[today])
+    database = db.reference(id).get()
+    today = max(database.keys()) # 가장 최근 날짜
+    database[today][emotion[1]] += 1
+    db.reference(id).child(today).set(database[today])
+    return ''
     
 
 
