@@ -31,6 +31,8 @@
                 android:layout_marginBottom="20dp"
                 android:text="Discord ID로 로그인"/>
             <EditText
+                android:hint="숫자만 입력"
+                android:digits="0123456789"
                 android:id="@+id/id_input"
                 android:background="@drawable/id_input"
                 android:layout_marginLeft="30dp"
@@ -57,6 +59,7 @@
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    android:id="@+id/login"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="13dp"
@@ -85,7 +88,6 @@
                     android:layout_height="70dp"/>
                 <TextView
                     android:textSize="5.5pt"
-                    android:text="1. Discord 프로필 부분의 <사용자 설정> 버튼을 클릭\n2. 좌측 메뉴에서 <디스플레이>속성을 클릭하여 개발자 모드 ON\n3. 대화창 내의 내 이름을 마우스 오른쪽으로 클릭\n4. <ID  복사하기> 클릭"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>

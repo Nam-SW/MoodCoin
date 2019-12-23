@@ -1,10 +1,13 @@
-package com.example.myapplication;
+package com.example.moodcoin;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 
 public class SplashActivity extends Activity {
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,5 +19,7 @@ public class SplashActivity extends Activity {
                 finish();
             }
         }, 2000);
+
+
     }
 }
