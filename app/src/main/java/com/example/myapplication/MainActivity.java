@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, SplashActivity.class);
         startActivity(intent);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         btn1 = (Button)findViewById(R.id.startbtn);
         String str = "";
