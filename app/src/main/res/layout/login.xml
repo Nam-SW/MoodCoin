@@ -45,13 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:fontFamily="@font/SCDream5"
                     android:textColor="#35477D"
                     android:text="아직 회원이 아니신가요?"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:fontFamily="@font/SCDream5"
                     android:textColor="#35477D"
                     android:textStyle="bold"
                     android:text="   회원가입 하기"
@@ -64,7 +62,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:fontFamily="@font/SCDream5"
                     android:textColor="#8C8C8C"
                     android:text="Discord ID 알아내는 방법"
                     android:layout_width="wrap_content"
