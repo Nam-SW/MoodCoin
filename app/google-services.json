@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1057056473403",
+    "firebase_url": "https://moodcoin-e9a22.firebaseio.com",
+    "project_id": "moodcoin-e9a22",
+    "storage_bucket": "moodcoin-e9a22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057056473403:android:8b5305b76ef8b46cbc371e",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057056473403-ggmkfq4e0595lakldp5an59vtpkac1gm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLKvlLJc2WIPhtZ9w7NYzV6BAE66y2d78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057056473403-ggmkfq4e0595lakldp5an59vtpkac1gm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
