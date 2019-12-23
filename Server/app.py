@@ -16,15 +16,16 @@ firebase_admin.initialize_app(credentials.Certificate(DB_cred), {
 def chat_update():
     id = request.form['id']
     talk = request.form['talk']
+    print(id, talk)
 
-    pred = moodcoin.predict(talk)
-    if pred == 0: # 대화한 내용이 뜻이 없는 업무적 내용 등일 경우
-        return
+    # pred = moodcoin.predict(talk)
+    # if pred == 0: # 대화한 내용이 뜻이 없는 업무적 내용 등일 경우
+    #     return
 
-    data = db.reference(id).get()
-    today = max(data.keys()) # 가장 최근 날짜
-    data[today][emotion[1]] += 1
-    db.reference(id).child(today).set(data[today])
+    # data = db.reference(id).get()
+    # today = max(data.keys()) # 가장 최근 날짜
+    # data[today][emotion[1]] += 1
+    # db.reference(id).child(today).set(data[today])
     
 
 
