@@ -16,10 +16,9 @@
             android:src="@drawable/moodicon"/>
         <LinearLayout
             android:orientation="vertical"
-            android:elevation="10dp"
             android:background="@drawable/round_window"
-            android:layout_width="400dp"
-            android:layout_height="360dp">
+            android:layout_width="370dp"
+            android:layout_height="380dp">
             <TextView
                 android:fontFamily="@font/nanum"
                 android:textColor="#35477D"
@@ -27,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="14dp"
                 android:layout_marginBottom="20dp"
                 android:text="Discord ID로 로그인"/>
             <EditText
@@ -35,14 +34,14 @@
                 android:digits="0123456789"
                 android:id="@+id/id_input"
                 android:background="@drawable/id_input"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="10dp"
                 android:paddingLeft="80dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="340dp"
                 android:layout_height="50dp"/>
 
             <LinearLayout
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -74,22 +73,23 @@
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="Discord ID 알아내는 방법"
+                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <ImageView
                     android:src="@drawable/howto"
                     android:layout_width="340dp"
                     android:layout_height="70dp"/>
-                <TextView
-                    android:textSize="5.5pt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:src="@drawable/howto_content"
+                    android:layout_width="340dp"
+                    android:layout_height="70dp"/>
             </LinearLayout>
 
         </LinearLayout>

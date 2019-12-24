@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/login_bg"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -9,28 +10,28 @@
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/happy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
 
         <TextView
             android:id="@+id/fireangry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
 
         <TextView
             android:id="@+id/disappear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
 
         <TextView
             android:id="@+id/sad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
 
         <TextView
             android:id="@+id/angry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
     </LinearLayout>
 
 </LinearLayout>
