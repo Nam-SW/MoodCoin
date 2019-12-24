@@ -1,55 +1,67 @@
 package com.example.moodcoin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
-
-    Button login;
-    String id;
-    EditText ed_id;
-    Date currentTime;
-    SimpleDateFormat Format = new SimpleDateFormat("yyyymmdd", Locale.getDefault());
-
+public class MainActivity extends Activity {
+    Button btn1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, SplashActivity.class);
-        startActivity(intent);
 
-        login = (Button)findViewById(R.id.login);
-        ed_id = (EditText)findViewById(R.id.id_input);
-
-        login.setOnClickListener(new View.OnClickListener() {
+        btn1 = (Button)findViewById(R.id.startbtn);
+        String str = "";
+        String sstr = "";
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        Log.d("ㅇㅇㅇ", "test1");
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(getFilesDir()+"check.txt"));
+            str = br.readLine();
+            br.close();
+            Log.d("ㅇㅇㅇ", "test5" + str);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d("ㅇㅇㅇ", "test4");
+        //str = str.trim();
+        Log.d("ㅇㅇㅇ", "test3");
+        Log.d("0000", "아아아"+str);
+        if(str.equals("O")){
+            Log.d("ㅇㅇㅇ", "점프");
+            nextjump();
+            finish();
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(ed_id.getText().toString().length()<18 || ed_id.getText().toString().length()>18)
-                    Toast.makeText(getApplicationContext(),"ID는 숫자 18자입니다.",Toast.LENGTH_LONG).show();
-                else{
-                    id = ed_id.getText().toString();
-                    Toast.makeText(getApplicationContext(),id,Toast.LENGTH_LONG).show();
-                    /*id = ed_id.getText().toString();
-                    currentTime  = Calendar.getInstance().getTime();
-                    String today = Format.format(currentTime);
-                    Intent intent = new Intent(MainActivity.this, LobbyActivity.class);
-                    intent.putExtra("id", id);
-                    intent.putExtra("today", today);
-                    startActivity(intent);*/
+            public void onClick(View v) {
+                try{
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(getFilesDir() + "check.txt", false));
+                    bw.write("O");
+                    bw.close();
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
+               nextjump();
             }
         });
+
+    }
+
+    private void nextjump() {
+        Intent intent1 = new Intent(this, lobbyActivity.class);
+        startActivity(intent1);
     }
 }
-

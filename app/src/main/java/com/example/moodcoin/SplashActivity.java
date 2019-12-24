@@ -1,13 +1,13 @@
 package com.example.moodcoin;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class SplashActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
 
-
-
+public class SplashActivity extends AppCompatActivity
+{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,10 +16,16 @@ public class SplashActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                jumpnext();
                 finish();
             }
         }, 2000);
 
 
+    }
+
+    private void jumpnext() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
