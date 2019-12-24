@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn1 = (Button)findViewById(R.id.startbtn);
+        btn1 = (Button)findViewById(R.id.login);
         String str = "";
         String sstr = "";
         ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
     }
 
     private void nextjump() {
-        Intent intent1 = new Intent(this, lobbyActivity.class);
+        Intent intent1 = new Intent(this, LobbyActivity.class);
         startActivity(intent1);
     }
 }
