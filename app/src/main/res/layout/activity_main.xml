@@ -4,7 +4,7 @@
     android:background="@drawable/login_bg"
     android:gravity="center"
     android:layout_height="match_parent">
-    <LinearLayout
+        <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

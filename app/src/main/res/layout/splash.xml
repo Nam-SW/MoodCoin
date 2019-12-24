@@ -11,10 +11,9 @@
         android:id="@+id/iv1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/spash_title"
         android:layout_gravity="center"
         android:layout_marginTop="130dp"
-      />
+        android:src="@drawable/spash_title" />
 
     <ImageView
         android:id="@+id/iv2"

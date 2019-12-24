@@ -39,12 +39,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"ID는 숫자 18자입니다.",Toast.LENGTH_LONG).show();
                 else{
                     id = ed_id.getText().toString();
+                    Toast.makeText(getApplicationContext(),id,Toast.LENGTH_LONG).show();
+                    /*id = ed_id.getText().toString();
                     currentTime  = Calendar.getInstance().getTime();
                     String today = Format.format(currentTime);
                     Intent intent = new Intent(MainActivity.this, LobbyActivity.class);
                     intent.putExtra("id", id);
                     intent.putExtra("today", today);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             }
         });
