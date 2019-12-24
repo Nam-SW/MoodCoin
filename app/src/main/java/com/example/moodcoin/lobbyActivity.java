@@ -1,12 +1,9 @@
-package com.example.myapplication;
+package com.example.moodcoin;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class lobbyActivity extends AppCompatActivity {
+public class lobbyActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

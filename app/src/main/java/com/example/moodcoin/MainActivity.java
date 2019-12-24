@@ -1,36 +1,24 @@
-package com.example.myapplication;
+package com.example.moodcoin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     Button btn1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(this, SplashActivity.class);
-        startActivity(intent);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         btn1 = (Button)findViewById(R.id.startbtn);
         String str = "";
@@ -39,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ㅇㅇㅇ", "test1");
         try{
             BufferedReader br = new BufferedReader(new FileReader(getFilesDir()+"check.txt"));
-//            while(((str = br.readLine()) != null)){
-//                sstr += str +"\n";
-//                Log.d("ㅇㅇㅇ", "test2" + sstr);
-//            }
             str = br.readLine();
             br.close();
             Log.d("ㅇㅇㅇ", "test5" + str);
