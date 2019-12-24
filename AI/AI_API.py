@@ -3,8 +3,9 @@ import re
 from konlpy.tag import Okt
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from keras.models import load_model
+import numpy as np
 import pickle
-from kor2vec import Kor2Vec
 
 
 class MoodCoin:
@@ -15,32 +16,44 @@ class MoodCoin:
         with open('sentences.pickle', 'rb') as f:
             self.tokenizer.fit_on_texts(pickle.load(f))
         self.maxlen = maxlen
+        self.model = load_model('model.h5')
         
 
     def prepocessing(self, data):
-        data = re.compile('[^ 가-힣]+').sub('', data.strip())
-        print(data)
-        data = self.otk.morphs(data, stem=True)
-        print(data)
-        data = [word for word in data if not word in self.stopwords]
-        print(data)
-        data = sum(self.tokenizer.texts_to_sequences(data), [])
-        print(data)
+        # word = {v:k for k,v in self.tokenizer.word_index.items()}
 
-        word = {v:k for k,v in self.tokenizer.word_index.items()}
-        print(' '.join([word[key] for key in data]))
-
-        data = pad_sequences([data], maxlen=self.maxlen)
+        if isinstance(data, str):
+            data = re.compile('[^ 가-힣]+').sub('', data.strip())
+            data = self.otk.morphs(data, stem=True)
+            data = [word for word in data if not word in self.stopwords]
+            data = sum(self.tokenizer.texts_to_sequences(data), [])
+            data = pad_sequences([data], maxlen=self.maxlen)
+        
+        elif isinstance(data, list) or isinstance(data, tuple):
+            temp = []
+            for d in data:
+                # print(d)
+                d = re.compile('[^ 가-힣]+').sub('', d.strip())
+                d = self.otk.morphs(d, stem=True)
+                d = [word for word in d if not word in self.stopwords]
+                d = sum(self.tokenizer.texts_to_sequences(d), [])
+                temp.append(d)
+            data = pad_sequences(temp, maxlen=self.maxlen)
         
         return data
+    
+    def predict(self, data):
+        data = self.prepocessing(data)
+        pred = self.model.predict(data)
+        pred = [np.argmax(p) for p in pred]
+
+        return pred
         
 
-mc = MoodCoin()
-kor2vec = Kor2Vec(embed_size=128)
-kor2vec.train("../path/corpus", batch_size=128) # takes some time
-kor2vec.save("../mode/path") # saving embedding
-kor2vec = Kor2Vec.load("../model/path")
-while True:
-    text = input('입력: ')
-    print(kor2vec.embedding(text, numpy=True).shape)
-    print(list(mc.prepocessing(text)))
+if __name__ == "__main__":
+    mc = MoodCoin()
+    # while True:
+    #     text = input('입력: ')
+    #     print(kor2vec.embedding(text, numpy=True).shape)
+    #     print(list(mc.prepocessing(text)))
+    print(mc.predict(['아니야...', '울지마시고', '쉿 하지 마시고', '일단은 프로젝트 집중합시당']))
