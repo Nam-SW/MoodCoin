@@ -8,18 +8,50 @@
   "client": [
     {
       "client_info": {
-<<<<<<< HEAD
+        "mobilesdk_app_id": "1:1057056473403:android:95a666282a1c0d40bc371e",
+        "android_client_info": {
+          "package_name": "com.example.moodcoin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057056473403-vnd4ii78p4kb6p3ik7a7cvj5tjapahf4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moodcoin",
+            "certificate_hash": "8a2a197d4b2c605ed97c406d94fb7d9513d55ebe"
+          }
+        },
+        {
+          "client_id": "1057056473403-ggmkfq4e0595lakldp5an59vtpkac1gm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLKvlLJc2WIPhtZ9w7NYzV6BAE66y2d78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057056473403-ggmkfq4e0595lakldp5an59vtpkac1gm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1057056473403:android:a5db69e6b3ecc1c8bc371e",
-=======
-        "mobilesdk_app_id": "1:1057056473403:android:8b5305b76ef8b46cbc371e",
->>>>>>> 7a46899fcce29c8c980c4d2dd2ac8163718b4858
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
       },
       "oauth_client": [
         {
-<<<<<<< HEAD
           "client_id": "1057056473403-vu8gi4uu463oa5771kqk2bcl3comhah9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -28,8 +60,6 @@
           }
         },
         {
-=======
->>>>>>> 7a46899fcce29c8c980c4d2dd2ac8163718b4858
           "client_id": "1057056473403-ggmkfq4e0595lakldp5an59vtpkac1gm.apps.googleusercontent.com",
           "client_type": 3
         }
