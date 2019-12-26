@@ -18,6 +18,10 @@
         </activity>
         <activity android:name="com.example.moodcoin.MainActivity"></activity>
         <activity android:name="com.example.moodcoin.LobbyActivity"></activity>
+        <activity android:name="com.example.moodcoin.TestLobbyActivity"></activity>
+        <activity android:name="com.example.moodcoin.FragmentMain"></activity>
+        <activity android:name="com.example.moodcoin.FragmentCamera"></activity>
+        <activity android:name="com.example.moodcoin.FragmentCall"></activity>
     </application>
 
 </manifest>

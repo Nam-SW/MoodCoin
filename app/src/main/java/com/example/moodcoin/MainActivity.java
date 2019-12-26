@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             intent1.putExtra("id", str);
         else
             intent1.putExtra("id", id);
+
         intent1.putExtra("today", today);
         startActivity(intent1);
         finish();
