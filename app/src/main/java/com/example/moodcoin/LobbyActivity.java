@@ -24,7 +24,7 @@ public class LobbyActivity extends Activity {
     DatabaseReference mDB_ref ;
     String id;
     String today;
-    TextView eh, efa, eda, es, ea;
+    TextView id_str, eh, efa, eda, es, ea;
     HashMap<String, Object> childUpdates = null;
 
     @Override
@@ -37,6 +37,7 @@ public class LobbyActivity extends Activity {
         today = getIntent().getStringExtra("today");
         mDB_ref = FirebaseDatabase.getInstance().getReference().child(id);
 
+        id_str = (TextView) findViewById(R.id.id_input);
         eh = (TextView) findViewById(R.id.happy);
         efa = (TextView) findViewById(R.id.fireangry);
         eda = (TextView) findViewById(R.id.disappear);
@@ -59,6 +60,7 @@ public class LobbyActivity extends Activity {
                 disappear = dataSnapshot.child(today).child("불안").getValue().toString();
                 sad = dataSnapshot.child(today).child("슬픔").getValue().toString();
                 angry = dataSnapshot.child(today).child("짜증").getValue().toString();
+                id_str.setText(id);
                 eh.setText(happy);
                 efa.setText(fireangry);
                 eda.setText(disappear);
@@ -75,6 +77,7 @@ public class LobbyActivity extends Activity {
                 mDB_ref.updateChildren(childUpdates);
                 childUpdates.put(today +"/짜증", 0);
                 mDB_ref.updateChildren(childUpdates);
+                id_str.setText(id);
                 eh.setText("0");
                 efa.setText("0");
                 eda.setText("0");
