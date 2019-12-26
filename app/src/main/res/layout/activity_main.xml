@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="40dp"
+        />
+
+    <EditText
+        android:hint="받을 사람"
+        android:id="@+id/getperson"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="340dp"
+        android:layout_height="50dp"/>
+
+    <EditText
+        android:id="@+id/sendprice"
+        android:hint="보낼 금액"
+        android:digits="0123456789"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="340dp"
+        android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+</LinearLayout>
