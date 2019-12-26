@@ -17,11 +17,11 @@ X = np.array(mc.prepocessing(list(data['X_data'])))
 Y = data['Y_data'].to_numpy()
 
 print(len(X), len(Y))
-t = list(Y)
-for i in range(6):
-    print(t.count(i), end=' ')
-np.save('dataset/X_data.npy', X)
-np.save('dataset/Y_data.npy', Y)
+# t = list(Y)
+# for i in range(6):
+#     print(t.count(i), end=' ')
+np.save('dataset/X_data.npy', X, allow_pickle=True)
+np.save('dataset/Y_data.npy', Y, allow_pickle=True)
 
 # x = np.load('dataset/X_data.npy')
 x = np.load('dataset/X_data.npy')
