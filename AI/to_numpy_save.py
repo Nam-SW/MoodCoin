@@ -17,5 +17,15 @@ X = np.array(mc.prepocessing(list(data['X_data'])))
 Y = data['Y_data'].to_numpy()
 
 print(len(X), len(Y))
+t = list(Y)
+for i in range(6):
+    print(t.count(i), end=' ')
 np.save('dataset/X_data.npy', X)
 np.save('dataset/Y_data.npy', Y)
+
+# x = np.load('dataset/X_data.npy')
+x = np.load('dataset/X_data.npy')
+y = np.load('dataset/Y_data.npy')
+
+print(x[:5])
+print(y[:5])
