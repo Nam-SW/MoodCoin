@@ -18,8 +18,11 @@ android {
         }
     }
 }
-
+repositories {
+    maven { url "https://jitpack.io" }
+}
 dependencies {
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile "com.android.support:design:25.0.0"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

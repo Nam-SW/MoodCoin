@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_one"
-        app:showAsAction="ifRoom"
-        android:enabled="true"
+        android:id="@+id/searchItem"
         android:icon="@drawable/home"
         android:title="홈" />
     <item
-        android:id="@+id/action_two"
-        app:showAsAction="ifRoom"
+        android:id="@+id/cameraItem"
         android:icon="@drawable/weekly"
         android:title="주간" />
     <item
-        android:id="@+id/action_three"
-        app:showAsAction="ifRoom"
-        android:enabled="true"
+        android:id="@+id/callItem"
         android:icon="@drawable/settings"
         android:title="설정" />
 </menu>
