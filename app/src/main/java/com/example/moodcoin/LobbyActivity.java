@@ -37,8 +37,6 @@ public class LobbyActivity extends Activity {
         today = getIntent().getStringExtra("today");
         mDB_ref = FirebaseDatabase.getInstance().getReference().child(id);
 
-        isExist();
-
         eh = (TextView) findViewById(R.id.happy);
         efa = (TextView) findViewById(R.id.fireangry);
         eda = (TextView) findViewById(R.id.disappear);
@@ -48,10 +46,6 @@ public class LobbyActivity extends Activity {
 
 
         mDB_ref.addValueEventListener(Listener);
-
-    }
-
-    private void isExist() {
 
     }
 
