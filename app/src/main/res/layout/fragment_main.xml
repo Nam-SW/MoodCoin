@@ -5,54 +5,288 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:elevation="10dp"
-        android:background="@drawable/main_block_radius"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        tools:ignore="MissingConstraints">
-        <com.github.mikephil.charting.charts.PieChart
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/piechart">
-        </com.github.mikephil.charting.charts.PieChart>
-    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:textColor="@android:color/white"
+            android:textColor="#FFFFFF"
             android:id="@+id/happy"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
         <TextView
-            android:textColor="@android:color/white"
+            android:textColor="#FFFFFF"
             android:id="@+id/fireangry"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
         <TextView
-            android:textColor="@android:color/white"
+            android:textColor="#FFFFFF"
             android:id="@+id/disappear"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
         <TextView
-            android:textColor="@android:color/white"
+            android:textColor="#FFFFFF"
             android:id="@+id/sad"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
         <TextView
-            android:textColor="@android:color/white"
+            android:textColor="#FFFFFF"
             android:id="@+id/angry"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:elevation="10dp"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                tools:ignore="MissingConstraints">
+                <TextView
+                    android:fontFamily="@font/kny"
+                    android:id="@+id/lobby_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    android:text="텍스트"
+                    android:textColor="#F67280"
+                    android:textSize="17pt"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:elevation="10dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/main_block_radius"
+                android:layout_width="match_parent"
+                android:layout_height="470dp"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="지금까지 "
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:id="@+id/most"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="텍스트"
+                            android:textColor="#FF8A80"
+                            android:textSize="13pt"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(을)를"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:text=" 가장 많이 느끼고 계셔요"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/info"
+                            android:fontFamily="@font/scd"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="그래프는 누르면 새로고침됩니다."
+                            android:textColor="#7A7A7A"
+                            android:textSize="8pt"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_gravity="center"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:id="@+id/piechart">
+                </com.github.mikephil.charting.charts.PieChart>
+            </LinearLayout>
+            <LinearLayout
+                android:elevation="10dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/main_block_radius"
+                android:layout_width="match_parent"
+                android:layout_height="375dp"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/when"
+                            android:layout_width="209dp"
+                            android:layout_height="46dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/ikulim"
+                            android:text="언제는 대체적으로"
+                            android:textColor="#333333"
+                            android:textSize="13pt" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:id="@+id/allfeel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:text="텍스트"
+                            android:textColor="#82B1FF"
+                            android:textSize="13pt"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:text=" 이 많아 보였어요"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/when_income"
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#333333"
+                            android:textSize="11pt"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="언제 입금된 금액"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/price"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#35477D"
+                                android:textSize="20pt"
+                                android:textStyle="bold"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="0"/>
+                            <TextView
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#333333"
+                                android:textSize="15pt"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="원"/>
+                        </LinearLayout>
+                        <TextView
+                            android:fontFamily="@font/scd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="※ 매일 오후 7시 30분에 입금됩니다."
+                            android:textColor="#7A7A7A"
+                            android:textSize="8pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#333333"
+                            android:textSize="11pt"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="현재 내 계좌의 금액"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/totalprice"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#35477D"
+                                android:textSize="20pt"
+                                android:textStyle="bold"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="0"/>
+                            <TextView
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#333333"
+                                android:textSize="15pt"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="원"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

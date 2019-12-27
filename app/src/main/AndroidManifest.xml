@@ -23,5 +23,6 @@
         <activity android:name="com.example.moodcoin.FragmentCamera"></activity>
         <activity android:name="com.example.moodcoin.FragmentCall"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 </manifest>
