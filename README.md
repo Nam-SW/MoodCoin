@@ -11,4 +11,13 @@
  * Flask 1.1.1 ~
  * tensorflow 2.0.0 ~
  * keras 2.2.5 ~
+ * firebase_admin 3.2.0 ~ 
  
+## 안드로이드 최저사양 버전
+ 
+
+## 안드로이드 필요 API
+ 
+
+## 기타 참조
+ [notion 링크] https://www.notion.so/namseungwoo/MoodCoin-GSM-Festival-24fde21cf9a84f5ebeaeb28e6469cf6f
