@@ -1,10 +1,9 @@
 package com.example.moodcoin;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,15 +43,18 @@ import java.util.HashMap;
 public class FragmentMain extends Fragment {
 
     HashMap<String, Object> childUpdates = null;
-    DatabaseReference mDB_ref ;
-    String getSum;
+    DatabaseReference mDB_ref;
+    String getsum = "";
     String id;
     String today;
-    TextView eh, efa, eda, es, ea, lobby_title, most, when, allfeel;
+    TextView eh, efa, eda, es, ea, lobby_title, most, when, allfeel, imana;
     String happy, fireangry, disappear, sad, angry;
     static Float _happy =0f, _fireangry=0f, _disappear=0f, _sad=0f, _angry=0f;
     PieChart pieChart;
     ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
+    int cnt=0;
+    SimpleDateFormat hour = new SimpleDateFormat("HH");
+    SimpleDateFormat min = new SimpleDateFormat("mm");
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         childUpdates = new HashMap<>();
@@ -59,7 +65,7 @@ public class FragmentMain extends Fragment {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         mDB_ref = FirebaseDatabase.getInstance().getReference();
 
-        mDB_ref.addValueEventListener(Listener);
+        mDB_ref.addListenerForSingleValueEvent(Listener);
 
         eh = (TextView) v.findViewById(R.id.happy);
         efa = (TextView) v.findViewById(R.id.fireangry);
@@ -67,81 +73,15 @@ public class FragmentMain extends Fragment {
         es = (TextView) v.findViewById(R.id.sad);
         ea = (TextView) v.findViewById(R.id.angry);
 
+        imana = (TextView)v.findViewById(R.id.imana);
         lobby_title = (TextView)v.findViewById(R.id.lobby_title);
         most = (TextView)v.findViewById(R.id.most);
         when = (TextView)v.findViewById(R.id.when);
         allfeel = (TextView)v.findViewById(R.id.allfeel);
 
         pieChart = (PieChart)v.findViewById(R.id.piechart);
-        if (_happy  != 0f) yValues.add(new PieEntry(_happy,"행복"));
-        if (_fireangry != 0f) yValues.add(new PieEntry(_fireangry,"분노"));
-        if (_disappear != 0f) yValues.add(new PieEntry(_disappear,"불안"));
-        if (_sad != 0f) yValues.add(new PieEntry(_sad,"슬픔"));
-        if (_angry != 0f) yValues.add(new PieEntry(_angry,"짜증"));
 
-        pieChart.setUsePercentValues(true);
-        pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5,10,5,5);
-
-        pieChart.setDragDecelerationFrictionCoef(0.95f);
-
-        pieChart.setDrawHoleEnabled(false);
-        pieChart.setHoleColor(Color.WHITE);
-        pieChart.setTransparentCircleRadius(61f);
-        Description description = new Description();
-        description.setText(""); //라벨
-        description.setTextSize(15);
-        pieChart.setDescription(description);
-        pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
-        timework();
         return v;
-    }
-
-    private void timework() {
-        final Handler handler = new Handler() {
-            SimpleDateFormat hour = new SimpleDateFormat("HH");
-            SimpleDateFormat min = new SimpleDateFormat("mm");
-            @Override
-            public void handleMessage(Message msg){
-                String h = hour.format(new Date());
-                String m = min.format(new Date());
-                int hh = Integer.parseInt(h);
-                int mm = Integer.parseInt(m);
-                if(hh==19 && mm>=30){
-                    try{
-                        BufferedReader br = new BufferedReader(new FileReader(getActivity().getFilesDir()+"recent_sum.txt"));
-                        getSum = br.readLine();
-                        br.close();
-
-                        BufferedReader date = new BufferedReader(new FileReader(getActivity().getFilesDir()+"recent_date.txt"));
-                        getSum = br.readLine();
-                        br.close();
-
-                        when.setText("오늘은 대체적으로");
-                        allfeel.setText(getSum);
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }else(hh<19 || (hh==19 && mm<30)){
-
-                }
-            }
-        };
-        Runnable task = new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    try{
-
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {}
-                    handler.sendEmptyMessage(1);
-                }
-            }
-        };
-        Thread thread = new Thread(task);
-        thread.start();
     }
 
     public void pieDataRefresh(){
@@ -159,6 +99,7 @@ public class FragmentMain extends Fragment {
 
 
     ValueEventListener Listener = new ValueEventListener() {
+        int cnt = 0;
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             try{
@@ -175,19 +116,9 @@ public class FragmentMain extends Fragment {
             }catch (Exception e){
                 try{
                     make_today_toFB();
-                    happy = dataSnapshot.child(id).child(today).child("기쁨").getValue().toString();
-                    fireangry = dataSnapshot.child(id).child(today).child("분노").getValue().toString();
-                    disappear = dataSnapshot.child(id).child(today).child("불안").getValue().toString();
-                    sad = dataSnapshot.child(id).child(today).child("슬픔").getValue().toString();
-                    angry = dataSnapshot.child(id).child(today).child("짜증").getValue().toString();
                 }catch (Exception a){
                     make_id_toFB();
                     make_today_toFB();
-                    happy = dataSnapshot.child(id).child(today).child("기쁨").getValue().toString();
-                    fireangry = dataSnapshot.child(id).child(today).child("분노").getValue().toString();
-                    disappear = dataSnapshot.child(id).child(today).child("불안").getValue().toString();
-                    sad = dataSnapshot.child(id).child(today).child("슬픔").getValue().toString();
-                    angry = dataSnapshot.child(id).child(today).child("짜증").getValue().toString();
                 }
             }finally {
                 _happy = Float.parseFloat(eh.getText().toString());
@@ -195,21 +126,83 @@ public class FragmentMain extends Fragment {
                 _angry = Float.parseFloat(ea.getText().toString());
                 _disappear = Float.parseFloat(eda.getText().toString());
                 _sad = Float.parseFloat(es.getText().toString());
-                yValues =new ArrayList<PieEntry>();
-                if (_happy  != 0f) yValues.add(new PieEntry(_happy,"기쁨"));
-                if (_fireangry != 0f) yValues.add(new PieEntry(_fireangry,"분노"));
-                if (_disappear != 0f) yValues.add(new PieEntry(_disappear,"불안"));
-                if (_sad != 0f) yValues.add(new PieEntry(_sad,"슬픔"));
-                if (_angry != 0f) yValues.add(new PieEntry(_angry,"짜증"));
-                Log.d("TESTPIE", "onDataChange: "+yValues);
-                set_title();
+                setChart();
+
+                try {
+                    setPriceInfo();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 pieDataRefresh();
             }
-
+            gethighest();
+            //set_title();
 
         }
 
-        private void set_title() {
+        private void setPriceInfo() throws IOException {
+            String h = hour.format(new Date());
+            String m = min.format(new Date());
+            int hh = Integer.parseInt(h);
+            int mm = Integer.parseInt(m);
+            if((hh >= 20 || (hh==19 && mm>=30))){ //7:30이 지난 경우, 오늘 송금 금액과 기분을 띄운다.
+                try{
+                    if(!getRecentDay().equals(today)){
+                        try{
+                            setRecentSum(gethighest());
+                            setRecentDay();
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }catch (Exception a){
+                    try{
+                        setRecentSum(gethighest());
+                        setRecentDay();
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                when.setText("오늘은 대체적으로");
+                getRecentDay();
+                allfeel.setText(getRecentSum());
+            }else{// 7:30이 지나지 않은 경우, 어제의 데이터를 띄운다.
+                try {
+                    when.setText(getRecentDay().substring(4,6) + "월" + getRecentDay().substring(6,8) + "일에는 대체적으로");
+                    allfeel.setText(getRecentSum());
+                }catch (Exception e){
+                    when.setText("아직 이전");
+                    imana.setText("데이터가 없네요");
+                    allfeel.setText("");
+                }
+            }
+        }
+
+        private void setChart(){
+            yValues =new ArrayList<PieEntry>();
+            pieChart.setUsePercentValues(true);
+            pieChart.getDescription().setEnabled(false);
+            pieChart.setExtraOffsets(5,10,5,5);
+            pieChart.setDragDecelerationFrictionCoef(0.95f);
+            pieChart.setDrawHoleEnabled(false);
+            pieChart.setHoleColor(Color.WHITE);
+            pieChart.setTransparentCircleRadius(61f);
+            Description description = new Description();
+            description.setText(""); //라벨
+            description.setTextSize(15);
+            pieChart.setDescription(description);
+            pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
+            if (_happy  != 0f) yValues.add(new PieEntry(_happy,"기쁨"));
+            if (_fireangry != 0f) yValues.add(new PieEntry(_fireangry,"분노"));
+            if (_disappear != 0f) yValues.add(new PieEntry(_disappear,"불안"));
+            if (_sad != 0f) yValues.add(new PieEntry(_sad,"슬픔"));
+            if (_angry != 0f) yValues.add(new PieEntry(_angry,"짜증"));
+            Log.d("TESTPIE", "onDataChange: "+yValues);
+        }
+
+        private String gethighest(){
             int [] arr = {Integer.parseInt(happy), Integer.parseInt(fireangry), Integer.parseInt(disappear), Integer.parseInt(sad), Integer.parseInt(angry)};
             String[] title = {
                     "오늘이 세상 행복한 날이었던 이유는\n오늘 세상 이쁜 미소를 보여줬던\n당신 덕분이에요!",
@@ -220,12 +213,12 @@ public class FragmentMain extends Fragment {
             };
             String[] most_arr = {"기쁨", "분노", "불안", "슬픔", "짜증"};
             String[] most_arr_sum = {"","","","",""};
+            String sum = "";
             int max=0, cnt=0, i, z=0;
-            String sum="";
             for(i=0; i < 5; i++){
                 if(max<arr[i]){
-                 max = arr[i];
-                 cnt = i;
+                    max = arr[i];
+                    cnt = i;
                 }
             }
             lobby_title.setText(title[cnt]);
@@ -244,7 +237,10 @@ public class FragmentMain extends Fragment {
                     sum = sum +" " + most_arr_sum[k];
             }
             most.setText(sum);
+            return sum;
         }
+
+
 
         private void make_id_toFB() {
             childUpdates.put(id,null);
@@ -262,6 +258,11 @@ public class FragmentMain extends Fragment {
             mDB_ref.updateChildren(childUpdates);
             childUpdates.put(id + "/" + today +"/짜증", 0);
             mDB_ref.updateChildren(childUpdates);
+            happy = "0";
+            fireangry = "0";
+            disappear = "0";
+            sad = "0";
+            angry = "0";
             eh.setText("0");
             efa.setText("0");
             eda.setText("0");
@@ -276,5 +277,62 @@ public class FragmentMain extends Fragment {
 
     };
 
+    private String getRecentDay(){
+        String day = null;
+        try {
+            BufferedReader get = new BufferedReader(new FileReader(getActivity().getFilesDir()+"/recent_date.txt"));
+            day = get.readLine();
+            get.close();
+        }catch (Exception e){
+            String testStr = "";
+            File savefile = new File(getActivity().getFilesDir()+"/recent_date.txt");
+            try{ FileOutputStream fos = new FileOutputStream(savefile);
+                fos.write(testStr.getBytes()); fos.close();}
+            catch(IOException a){}
+            day = "";
+        }
+
+        return day;
+    }
+
+    private void setRecentDay(){
+        try {
+            BufferedWriter set = new BufferedWriter(new FileWriter(getActivity().getFilesDir() + "/recent_date.txt", false));
+            set.write(today);
+            set.close();
+        }catch (Exception e){
+            String testStr = "";
+            File savefile = new File(getActivity().getFilesDir()+"/recent_date.txt");
+            try{ FileOutputStream fos = new FileOutputStream(savefile);
+                fos.write(testStr.getBytes()); fos.close();}
+            catch(IOException a){}
+        }
+    }
+
+    private String getRecentSum(){
+        String yesterday_sum = null;
+        try{
+            BufferedReader sum = new BufferedReader(new FileReader(getActivity().getFilesDir()+"/recent_sum.txt"));
+            yesterday_sum = sum.readLine();
+            sum.close();
+        }catch (Exception e){
+            String testStr = "";
+            File savefile = new File(getActivity().getFilesDir()+"/recent_sum.txt");
+            try{ FileOutputStream fos = new FileOutputStream(savefile);
+                fos.write(testStr.getBytes()); fos.close();}
+            catch(IOException a){}
+            yesterday_sum = "";
+        }
+        return yesterday_sum;
+    }
+
+    private void setRecentSum(String getsum){
+        try {
+            BufferedWriter sum = new BufferedWriter(new FileWriter(getActivity().getFilesDir() + "/recent_sum.txt", false));
+            sum.write(getsum);
+            sum.close();
+        }catch (Exception e){
+        }
+    }
 
 }

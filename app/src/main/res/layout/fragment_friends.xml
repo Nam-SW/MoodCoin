@@ -52,16 +52,16 @@
                 android:elevation="10dp"
                 android:layout_margin="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="130dp"
                 tools:ignore="MissingConstraints">
                 <TextView
                     android:fontFamily="@font/ikulim"
-                    android:id="@+id/lobby_title"
+                    android:id="@+id/friends_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="30dp"
-                    android:text="텍스트"
+                    android:text="0명의 친구가\n연결되어 있어요"
                     android:textColor="#F67280"
                     android:textSize="15pt"/>
             </LinearLayout>
@@ -71,7 +71,7 @@
                 android:layout_margin="20dp"
                 android:background="@drawable/main_block_radius"
                 android:layout_width="match_parent"
-                android:layout_height="470dp"
+                android:layout_height="420dp"
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
                 <LinearLayout
@@ -88,13 +88,13 @@
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:text="지금까지 "
+                            android:text="현재 "
                             android:textColor="#333333"
                             android:textSize="13pt"/>
                         <TextView
                             android:fontFamily="@font/ikulim"
                             android:layout_gravity="center"
-                            android:id="@+id/most"
+                            android:id="@+id/help_suggestion"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:text="텍스트"
@@ -106,7 +106,7 @@
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:text="(을)를"
+                            android:text=" 님께서"
                             android:textColor="#333333"
                             android:textSize="13pt"/>
                     </LinearLayout>
@@ -118,29 +118,112 @@
                             android:fontFamily="@font/ikulim"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:text=" 가장 많이 느끼고 계셔요"
+                            android:layout_height="50dp"
+                            android:text="심적으로 도움이 필요해요!"
                             android:textColor="#333333"
                             android:textSize="13pt"/>
                     </LinearLayout>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/ikulim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="송금으로 친구의 마음을 달래보아요!"
+                        android:textColor="#7A7A7A"
+                        android:textSize="8pt"/>
                     <LinearLayout
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_marginTop="15dp"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#333333"
+                            android:textSize="8pt"
+                            android:layout_marginLeft="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="현재 내 계좌의 금액"/>
+                        <LinearLayout
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/price"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#35477D"
+                                android:textSize="15pt"
+                                android:textStyle="bold"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="0"/>
+                            <TextView
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#333333"
+                                android:textSize="10pt"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="원"/>
+                        </LinearLayout>
+                        <TextView
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#333333"
+                            android:textSize="11pt"
+                            android:layout_marginLeft="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="송금할 금액"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:hint="금액을 입력하세요"
+                                android:digits="0123456789"
+                                android:id="@+id/id_input"
+                                android:background="@drawable/send_money"
+                                android:layout_marginLeft="10dp"
+                                android:paddingLeft="60dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_width="250dp"
+                                android:layout_height="50dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_width="300dp"
+                        android:layout_height="60dp">
+                        <Button
+                            android:layout_gravity="center"
+                            android:id="@+id/send_money"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="10dp"
+                            android:text="송금"
+                            android:textColor="#333"
+                            android:background="@drawable/rounded"
+                            android:textSize="18dp"
+                            android:textFontWeight="500"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:elevation="6dp"/>
+                    </LinearLayout>
                 </LinearLayout>
-                <com.github.mikephil.charting.charts.PieChart
-                    android:layout_gravity="center"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:id="@+id/piechart">
-                </com.github.mikephil.charting.charts.PieChart>
             </LinearLayout>
+
             <LinearLayout
                 android:elevation="10dp"
                 android:layout_margin="20dp"
+                android:paddingBottom="20dp"
                 android:background="@drawable/main_block_radius"
                 android:layout_width="match_parent"
-                android:layout_height="375dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
                 <LinearLayout
@@ -152,120 +235,65 @@
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                         <TextView
-                            android:id="@+id/when"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:fontFamily="@font/ikulim"
-                            android:text="언제는 대체적으로"
+                            android:text="나와 연결된 친구들이에요"
                             android:textColor="#333333"
                             android:textSize="13pt" />
                     </LinearLayout>
                     <LinearLayout
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:fontFamily="@font/ikulim"
-                            android:layout_gravity="center"
-                            android:id="@+id/allfeel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:text="텍스트"
-                            android:textColor="#82B1FF"
-                            android:textSize="13pt"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:id="@+id/imana"
-                            android:fontFamily="@font/ikulim"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:text=" 이 많아 보였어요"
-                            android:textColor="#333333"
-                            android:textSize="13pt"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_gravity="center"
                         android:orientation="vertical"
+                        android:layout_gravity="center"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/when_income"
-                            android:fontFamily="@font/nanum"
-                            android:textColor="#333333"
-                            android:textSize="11pt"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="언제 입금된 금액"/>
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/price"
-                                android:fontFamily="@font/nanum"
-                                android:textColor="#35477D"
-                                android:textSize="20pt"
-                                android:textStyle="bold"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:text="0"/>
-                            <TextView
-                                android:fontFamily="@font/nanum"
-                                android:textColor="#333333"
-                                android:textSize="15pt"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:text="원"/>
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+                            <Button
+                                android:layout_gravity="center"
+                                android:id="@+id/add_friend"
+                                android:layout_width="120dp"
+                                android:layout_height="30dp"
+                                android:text="추가/수정"
+                                android:textColor="#333"
+                                android:background="@drawable/rounded"
+                                android:textSize="18dp"
+                                android:textFontWeight="500"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:elevation="6dp"/>
+                            <Button
+                                android:layout_gravity="center"
+                                android:id="@+id/delete_friend"
+                                android:layout_width="80dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:text="삭제"
+                                android:textColor="#333"
+                                android:background="@drawable/rounded"
+                                android:textSize="18dp"
+                                android:textFontWeight="500"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:elevation="6dp"/>
                         </LinearLayout>
-                        <TextView
-                            android:fontFamily="@font/scd"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="※ 매일 오후 7시 30분에 입금됩니다."
-                            android:textColor="#7A7A7A"
-                            android:textSize="8pt"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_gravity="center"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:fontFamily="@font/nanum"
-                            android:textColor="#333333"
-                            android:textSize="11pt"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="현재 내 계좌의 금액"/>
+
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:background="@drawable/table_bg"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:id="@+id/totalprice"
+                                android:textSize="8pt"
                                 android:fontFamily="@font/nanum"
-                                android:textColor="#35477D"
-                                android:textSize="20pt"
-                                android:textStyle="bold"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:text="0"/>
-                            <TextView
-                                android:fontFamily="@font/nanum"
-                                android:textColor="#333333"
-                                android:textSize="15pt"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:text="원"/>
+                                android:layout_margin="12dp"
+                                android:id="@+id/friends_table"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
                         </LinearLayout>
                     </LinearLayout>
 

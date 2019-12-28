@@ -2,7 +2,6 @@ package com.example.moodcoin;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +17,9 @@ public class LobbyActivity extends AppCompatActivity {
     Bundle bundle = new Bundle();
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentMain fragmentMain = new FragmentMain();
-    private FragmentCamera fragmentCamera = new FragmentCamera();
+    private FragmentFriends fragmentFriends = new FragmentFriends();
     private FragmentCall fragmentCall = new FragmentCall();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +28,13 @@ public class LobbyActivity extends AppCompatActivity {
 
         id = getIntent().getStringExtra("id");
         today = getIntent().getStringExtra("today");
-        mDB_ref = FirebaseDatabase.getInstance().getReference().child(id);
-
-        id_str = (TextView) findViewById(R.id.id_input);
-        eh = (TextView) findViewById(R.id.happy);
-        efa = (TextView) findViewById(R.id.fireangry);
-        eda = (TextView) findViewById(R.id.disappear);
-        es = (TextView) findViewById(R.id.sad);
-        ea = (TextView) findViewById(R.id.angry);
 
         bundle.putString("id", id);
         bundle.putString("today", today);
 
         fragmentMain.setArguments(bundle);
+        fragmentFriends.setArguments(bundle);
+
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, fragmentMain).commitAllowingStateLoss();
@@ -59,7 +53,7 @@ public class LobbyActivity extends AppCompatActivity {
                     transaction.replace(R.id.frameLayout, fragmentMain).commit();
                     break;
                 case R.id.cameraItem:
-                    transaction.replace(R.id.frameLayout, fragmentCamera).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameLayout, fragmentFriends).commitAllowingStateLoss();
                     break;
                 case R.id.callItem:
                     transaction.replace(R.id.frameLayout, fragmentCall).commitAllowingStateLoss();

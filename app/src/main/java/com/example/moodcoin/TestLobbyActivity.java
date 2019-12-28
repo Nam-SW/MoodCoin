@@ -14,7 +14,7 @@ public class TestLobbyActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentMain fragmentMain = new FragmentMain();
-    private FragmentCamera fragmentCamera = new FragmentCamera();
+    private FragmentFriends fragmentCamera = new FragmentFriends();
     private FragmentCall fragmentCall = new FragmentCall();
 
     @Override
