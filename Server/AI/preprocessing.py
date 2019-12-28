@@ -8,7 +8,7 @@ import numpy as np
 from random import randint
 
 data = []
-with open('dataset/똥멍충 카톡.txt', 'r', encoding='UTF8') as talks:
+with open('./dataset/똥멍충 카톡.txt', 'r', encoding='UTF8') as talks:
     # with open('dataset/law_data.txt', 'w', encoding='UTF8') as f:
     for talk in talks.readlines():
         if talk[0] == '[' and talk.count('[') >= 2: # 대화내용
@@ -41,9 +41,9 @@ for i, j in zip(d1, x1):
     data.append(i)
     x.append(j)
 
-with open('sentences.pickle', 'wb') as f:
+with open('./sentences.pickle', 'wb') as f:
     pickle.dump(x, f)
-with open('dataset/law_data.txt', 'w', encoding='UTF8') as f:
+with open('./dataset/law_data.txt', 'w', encoding='UTF8') as f:
     for d in data:
         f.write(d + '\n')
 
@@ -52,7 +52,7 @@ t = Tokenizer(num_words=max_words+2, oov_token='OOV') # 상위 5000개의 단어
 t.fit_on_texts(x)
 x = t.texts_to_sequences(x)
 
-np.save('dataset/X_data.npy', np.array(x)) # 넘파이로 일단 저장
+np.save('./dataset/X_data.npy', np.array(x)) # 넘파이로 일단 저장
 
 word = {v:k for k,v in t.word_index.items()}
 for _ in range(5):
