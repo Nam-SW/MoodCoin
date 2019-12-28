@@ -21,3 +21,4 @@
 
 ## 기타 참조
  [notion 링크](https://www.notion.so/namseungwoo/MoodCoin-GSM-Festival-24fde21cf9a84f5ebeaeb28e6469cf6f)
+ [시발비용이란?](https://ko.wikipedia.org/wiki/%EC%8B%9C%EB%B0%9C_%EB%B9%84%EC%9A%A9)
