@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "moodcoin-e9a22",
+  "private_key_id": "380ec3d8f1b99b78c14ca5c51b6d5ddd84966a6c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC5F8dCRQgt0YYK\n154c0nlwMb+FeT5gxg1VMgSLteAb+yjnnxFoW9fbgCGM55fVj++9s3nci6sxowtI\nT/dlHg9pAaQHu7gt1/dHe01J7iWzKZqe/6Q/KUT+uJa5TDxv7xmzuG5nFnytgCul\nd4bBko98pd0J2xRRAparZLT7Lq37w2lMwc9hoUVH09toGxCdV0yQ4mXITMMO42FA\n9qibk5t9zb59jkTSP7NTwBO0GOTXlycAMfy/a+EaorFKdXqBRndwOrs/+hwSbhPN\nw3rgWOJjjAJ/uhut8cH9oYmp8p9K+i3hdxGfLtIeK8W3u/LhipDljuVz5j3bvgnC\nN1U5U/blAgMBAAECggEABPVG2tByev25l2+pFkPdSZzZJBUFHEttEhrqpcGiICwo\nb2a8RrCGvGQqIelJqmIc0/1RvQKg/ADbPZCAA7CpAFEkfBBY5O6vB4M25Q1w0f2O\nw4ZJqudEjp+fUMivkF6i8HfdVzwYn2Vg5e514n7cgp3taThTfgvYDhb+xRq+Dngk\n6YLRNLe4w5pJ1+1SPGDcgdZ4bqg5kPjBnmnxvcti06gs6MxQNQJPgqapoLjQNwYG\nBjMHOAzhoGlB2802/lkyPalfwO0LsOwu0lM7bD0gMoBsUhtNUSM6ONiIumufcEN5\n3rE2NLuWUlZvERRm/dDBL7cOXw03dfQNe0G4blMn4QKBgQDxaAUYINJaup3Tlexa\nJLp7ogP/dE/F5CSgEIQSmxg5ut6aIL4sgxgZ+g+Gv3jLjjA9P+Xe4SQMRWktddS0\nNffWYI/U/SZk3ENfGMYnwwTO19DOP7QXfUzWqWeNnvVzKM3ymA1WiybMjcAi33zD\nnQwYVCCAYlVsLXZoql4DYNoLoQKBgQDESEHbdpkylbC4MSXQ0G1/pN++48pxdEfO\n2ZYI6YhdRWi/u9mQv6edSw2NbocR9CfJWmrltSTQtukN2do1MNlYVoc4uV3o7Weh\ntlwYcmMoEQK/v1/6hCLZzhF2y9jrYBgwyshkZtaLE4eCdJTFwwhgMNxiS/3VsCE6\nm3Jih0qExQKBgQCEUMBiDjNd+WViQI1whysTcqUAUm8bB0Yv2X2aeRnZIpy6G/JA\nkYYXTuFNuQrrfz7fg3NqKzrH4w+YFDqGoAH8paaQVkTCCZx/tiN+Tb0H5nCTa4U5\nTrtb+TRCAnuEKDxhmIfPBKw6eAN02cwXp6+mcg3ycHNjvLNnAOJQtbgtoQKBgQCa\nkvjiNxzgXEgGVhYcwvdojVPzBXrZLCScvnfMXvUX1uBuFiZ5OqVqVr++gKt4NRnc\nFQuYCLaMc29HjCeuueCAE+x7fGd7VvLExFL0oah61iKfFLwmEkdL1V+leVVDz7Jd\nQmTbxKzya5fM4biDoVsIPZJhCs1EqmcQu3gyJa9GrQKBgQDlAEoq30C4sZuyH+6l\ntCFzaSsATanSVc/Tn/+iLg5/ccf43S6Eh8eVmRjIHQakoHTHj4uNSdN5NmfLVMu2\n2FudVQz5OFn05eMzD1SZCJlPKgzyljnbpNRb7NweKxgKdtqaVCxuBKLeA4MQ60q+\n7Aio5D2ghGu4eHIiteGXUnL3ew==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-z0re8@moodcoin-e9a22.iam.gserviceaccount.com",
+  "client_id": "115512668752442184419",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-z0re8%40moodcoin-e9a22.iam.gserviceaccount.com"
+}
