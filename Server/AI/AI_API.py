@@ -1,8 +1,6 @@
 #-*- coding:utf-8 -*-
 import re
 from konlpy.tag import Okt
-# from tensorflow.keras.preprocessing.text import Tokenizer
-# from tensorflow.keras.preprocessing.sequence import pad_sequences
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
