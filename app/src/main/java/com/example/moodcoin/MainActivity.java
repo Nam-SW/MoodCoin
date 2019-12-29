@@ -69,6 +69,15 @@ public class MainActivity extends AppCompatActivity {
                         BufferedWriter bw = new BufferedWriter(new FileWriter(getFilesDir() + "check.txt", false));
                         bw.write(id);
                         bw.close();
+                        BufferedWriter sum = new BufferedWriter(new FileWriter(getFilesDir() + "/recent_sum.txt", false));
+                        sum.write("0");
+                        sum.close();
+                        BufferedWriter set = new BufferedWriter(new FileWriter(getFilesDir() + "/recent_date.txt", false));
+                        set.write("0");
+                        set.close();
+                        BufferedWriter ischanged = new BufferedWriter(new FileWriter(getFilesDir() + "/ischecked.txt", false));
+                        ischanged.write("0");
+                        ischanged.close();
                     }catch (Exception e){
                         e.printStackTrace();
                     }

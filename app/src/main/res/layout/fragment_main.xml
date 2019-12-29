@@ -6,41 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/happy"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/fireangry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/disappear"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/sad"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/angry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -67,6 +32,61 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/no_info"
+                android:visibility="gone"
+                android:elevation="10dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/main_block_radius"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="아직 기록된"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:text="감정 정보가 없어요"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <TextView
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/ikulim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Discord에서 열심히 대화를 즐긴 후\n찾아와주세요!"
+                        android:textColor="#7A7A7A"
+                        android:textSize="8pt"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/yes_info"
+                android:visibility="gone"
                 android:elevation="10dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/main_block_radius"
@@ -154,6 +174,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:gravity="center"
                             android:id="@+id/when"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
@@ -164,6 +185,7 @@
                             android:textSize="13pt" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/most_things_view"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">

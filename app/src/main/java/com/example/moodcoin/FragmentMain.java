@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,10 +45,10 @@ public class FragmentMain extends Fragment {
 
     HashMap<String, Object> childUpdates = null;
     DatabaseReference mDB_ref;
-    String getsum = "";
+    LinearLayout no, yes, most_things_view;
     String id;
     String today;
-    TextView eh, efa, eda, es, ea, lobby_title, most, when, allfeel, imana;
+    TextView lobby_title, most, when, allfeel, imana;
     String happy, fireangry, disappear, sad, angry;
     static Float _happy =0f, _fireangry=0f, _disappear=0f, _sad=0f, _angry=0f;
     PieChart pieChart;
@@ -55,6 +56,7 @@ public class FragmentMain extends Fragment {
     int cnt=0;
     SimpleDateFormat hour = new SimpleDateFormat("HH");
     SimpleDateFormat min = new SimpleDateFormat("mm");
+    SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         childUpdates = new HashMap<>();
@@ -67,11 +69,9 @@ public class FragmentMain extends Fragment {
 
         mDB_ref.addListenerForSingleValueEvent(Listener);
 
-        eh = (TextView) v.findViewById(R.id.happy);
-        efa = (TextView) v.findViewById(R.id.fireangry);
-        eda = (TextView) v.findViewById(R.id.disappear);
-        es = (TextView) v.findViewById(R.id.sad);
-        ea = (TextView) v.findViewById(R.id.angry);
+        no = (LinearLayout)v.findViewById(R.id.no_info);
+        yes = (LinearLayout)v.findViewById(R.id.yes_info);
+        most_things_view = (LinearLayout)v.findViewById(R.id.most_things_view);
 
         imana = (TextView)v.findViewById(R.id.imana);
         lobby_title = (TextView)v.findViewById(R.id.lobby_title);
@@ -102,17 +102,16 @@ public class FragmentMain extends Fragment {
         int cnt = 0;
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            String today_changed = date.format(new Date());
+            int int_today_changed = Integer.parseInt(today_changed);
+            if(int_today_changed > Integer.parseInt(today))
+                today = today_changed;
             try{
                 happy = dataSnapshot.child(id).child(today).child("기쁨").getValue().toString();
                 fireangry = dataSnapshot.child(id).child(today).child("분노").getValue().toString();
                 disappear = dataSnapshot.child(id).child(today).child("불안").getValue().toString();
                 sad = dataSnapshot.child(id).child(today).child("슬픔").getValue().toString();
                 angry = dataSnapshot.child(id).child(today).child("짜증").getValue().toString();
-                eh.setText(happy);
-                efa.setText(fireangry);
-                eda.setText(disappear);
-                es.setText(sad);
-                ea.setText(angry);
             }catch (Exception e){
                 try{
                     make_today_toFB();
@@ -121,13 +120,12 @@ public class FragmentMain extends Fragment {
                     make_today_toFB();
                 }
             }finally {
-                _happy = Float.parseFloat(eh.getText().toString());
-                _fireangry = Float.parseFloat(efa.getText().toString());
-                _angry = Float.parseFloat(ea.getText().toString());
-                _disappear = Float.parseFloat(eda.getText().toString());
-                _sad = Float.parseFloat(es.getText().toString());
+                _happy = Float.parseFloat(happy);
+                _fireangry = Float.parseFloat(fireangry);
+                _angry = Float.parseFloat(angry);
+                _disappear = Float.parseFloat(disappear);
+                _sad = Float.parseFloat(angry);
                 setChart();
-
                 try {
                     setPriceInfo();
                 } catch (IOException e) {
@@ -136,8 +134,6 @@ public class FragmentMain extends Fragment {
                 pieDataRefresh();
             }
             gethighest();
-            //set_title();
-
         }
 
         private void setPriceInfo() throws IOException {
@@ -146,8 +142,8 @@ public class FragmentMain extends Fragment {
             int hh = Integer.parseInt(h);
             int mm = Integer.parseInt(m);
             if((hh >= 20 || (hh==19 && mm>=30))){ //7:30이 지난 경우, 오늘 송금 금액과 기분을 띄운다.
-                try{
-                    if(!getRecentDay().equals(today)){
+                if(!getRecentDay().equals(today)){
+                    if(!gethighest().equals("X")){ //앱을 실행할 때가 7:30이 지났고 현재 SUM값이 X가 아닐 경우
                         try{
                             setRecentSum(gethighest());
                             setRecentDay();
@@ -156,28 +152,37 @@ public class FragmentMain extends Fragment {
                             e.printStackTrace();
                         }
                     }
-                }catch (Exception a){
-                    try{
-                        setRecentSum(gethighest());
-                        setRecentDay();
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
                 }
-                when.setText("오늘은 대체적으로");
-                getRecentDay();
-                allfeel.setText(getRecentSum());
-            }else{// 7:30이 지나지 않은 경우, 어제의 데이터를 띄운다.
-                try {
-                    when.setText(getRecentDay().substring(4,6) + "월" + getRecentDay().substring(6,8) + "일에는 대체적으로");
+                if(getRecentDay().equals("0")){ //오늘과 이전 데이터가 없을 경우
+                    no_prev_data();
+                }else if(getRecentDay().equals(today)){ //오늘 데이터가 있을 경우
+                    when.setText("오늘은 대체적으로");
                     allfeel.setText(getRecentSum());
+                }else if(!getRecentDay().equals("0")){ //오늘은 없어도 이전 데이터가 있을 경우
+                    show_prev_data();
+                }
+            }else{ // 7:30이 지나지 않은 경우, 어제의 데이터를 띄운다.
+                try {
+                    if(getRecentSum().equals("0")){ //이전 데이터가 없을 경우
+                        no_prev_data();
+                    }else{ //이전 데이터가 있을 경우
+                        show_prev_data();
+                    }
                 }catch (Exception e){
-                    when.setText("아직 이전");
-                    imana.setText("데이터가 없네요");
-                    allfeel.setText("");
+                    no_prev_data();
                 }
             }
+        }
+
+        private void show_prev_data(){
+            when.setText(getRecentDay().substring(4,6) + "월" + getRecentDay().substring(6,8) + "일에는 대체적으로");
+            allfeel.setText(getRecentSum());
+        }
+
+        private void no_prev_data(){
+            when.setText("아직 이전");
+            imana.setText("데이터가 없네요");
+            allfeel.setText("");
         }
 
         private void setChart(){
@@ -221,7 +226,6 @@ public class FragmentMain extends Fragment {
                     cnt = i;
                 }
             }
-            lobby_title.setText(title[cnt]);
             most_arr_sum[z] = most_arr[cnt];
             z++;
             for(int j =0; j < 5; j++){
@@ -235,6 +239,16 @@ public class FragmentMain extends Fragment {
             for(int k=0; k<most_arr_sum.length; k++){
                 if(!most_arr_sum[k].equals(""))
                     sum = sum +" " + most_arr_sum[k];
+            }
+            if(max == 0){
+                no.setVisibility(View.VISIBLE);
+                yes.setVisibility(View.GONE);
+                sum = "X";
+                lobby_title.setText("내일이면 소멸되는 남은 당신의 소중한 하루를\n부디 후회없이 보내길 바래요..!");
+            }else{
+                yes.setVisibility(View.VISIBLE);
+                no.setVisibility(View.GONE);
+                lobby_title.setText(title[cnt]);
             }
             most.setText(sum);
             return sum;
@@ -263,11 +277,6 @@ public class FragmentMain extends Fragment {
             disappear = "0";
             sad = "0";
             angry = "0";
-            eh.setText("0");
-            efa.setText("0");
-            eda.setText("0");
-            es.setText("0");
-            ea.setText("0");
         }
 
         @Override
