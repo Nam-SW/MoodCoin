@@ -264,6 +264,7 @@ public class FragmentMain extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                Log.d("asd", "스와이프 접속");
                 mDB_ref.addListenerForSingleValueEvent(Listener);
                 flagnum = 1;
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
@@ -412,10 +413,13 @@ public class FragmentMain extends Fragment {
 
                 addprice = get_price;
                 flagnum = 1;
+                Log.d("dd", "flagnum1됬다");
+
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
-                Log.d("마마", "메오오오" + flagnum);
-                flagnum = 2;
-                new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+
+//                flagnum = 2;
+//                Log.d("dd", "flagnum2됬다");
+//                new JSONTask().execute("http://10.120.72.146:3000/statemoney");
             }
             catch (IOException e) {
                 e.printStackTrace();
