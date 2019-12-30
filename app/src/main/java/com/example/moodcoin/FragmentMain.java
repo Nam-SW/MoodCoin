@@ -557,6 +557,31 @@ public class FragmentMain extends Fragment {
 
     };
 
+    private String getRecentDay1(){
+        String day = null;
+        try {
+            BufferedReader get = new BufferedReader(new FileReader(getActivity().getFilesDir()+"/nd.txt"));
+            day = get.readLine();
+            get.close();
+        }catch (Exception e){ }
+
+        return day;
+    }
+
+    private void setRecentDay1(){
+        try {
+            BufferedWriter set = new BufferedWriter(new FileWriter(getActivity().getFilesDir() + "/nd.txt", false));
+            set.write(today);
+            set.close();
+        }catch (Exception e){
+            String testStr = "";
+            File savefile = new File(getActivity().getFilesDir()+"/nd.txt");
+            try{ FileOutputStream fos = new FileOutputStream(savefile);
+                fos.write(testStr.getBytes()); fos.close();}
+            catch(IOException a){}
+        }
+    }
+
     private String getRecentDay(){
         String day = null;
         try {
@@ -692,6 +717,10 @@ public class FragmentMain extends Fragment {
         }
         @Override
         protected void onPostExecute(String result) {
+            String h = hour.format(new Date());
+            String m = min.format(new Date());
+            int hh = Integer.parseInt(h);
+            int mm = Integer.parseInt(m);
             super.onPostExecute(result);
             if(flagnum == 1){
                 tv1.setText(result);
@@ -699,8 +728,14 @@ public class FragmentMain extends Fragment {
                 Log.d("ㅁㅁ", "성범" + getRecentDay());
                 Log.d("ㅁㅁ", "성범" + today);
                 Log.d("ㅁㅁ", "성범" + getRecentDay().equals(today));
-                if(!getRecentDay().equals(today) && !(getRecentDay().equals(today)))
-                    new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+                if((hh >= 20 || (hh==19 && mm>=30))){
+                    if((getRecentDay1().equals(today))){
+                        flagnum = 2;
+                        new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+                        setRecentDay1();
+                    }
+                }
+
 
             } else if(flagnum == 2){
                 tv1.setText(result);

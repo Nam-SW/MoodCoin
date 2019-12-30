@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
                         BufferedWriter mokpyo = new BufferedWriter(new FileWriter(getFilesDir() + "/mokpyo.txt", false));
                         mokpyo.write(getmokpyo);
                         mokpyo.close();
+                        BufferedWriter newdate = new BufferedWriter(new FileWriter(getFilesDir() + "/nd.txt", false));
+                        newdate.write("0");
+                        newdate.close();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
