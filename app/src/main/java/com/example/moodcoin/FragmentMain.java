@@ -271,7 +271,9 @@ public class FragmentMain extends Fragment {
             @Override
             public void onRefresh() {
                 mDB_ref.addListenerForSingleValueEvent(Listener);
+                flagnum = 1;
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
+                flagnum = 2;
                 new JSONTask().execute("http://10.120.72.146:3000/statemoney");
                 swipeRefreshLayout.setRefreshing((false));
             }
@@ -599,12 +601,11 @@ public class FragmentMain extends Fragment {
             try {
                 //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
                 JSONObject jsonObject = new JSONObject();
-                if(flagnum == 2){
+                if(flagnum == 1){
+                    jsonObject.accumulate("sendperson", id);
+                }else if(flagnum == 2){
                     jsonObject.accumulate("sendperson", id);
                     jsonObject.accumulate("addprice", addprice);
-
-                }else if(flagnum == 1){
-                    jsonObject.accumulate("sendperson", id);
                 }
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
@@ -673,10 +674,10 @@ public class FragmentMain extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(flagnum == 2){
-                price.setText(result);
-            }else if(flagnum == 1){
+            if(flagnum == 1){
                 tv1.setText(result);
+            } else if(flagnum == 2){
+                price.setText(result);
             }
         }
     }
