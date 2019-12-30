@@ -113,6 +113,9 @@ public class FragmentFriends extends Fragment {
             @Override
             public void onClick(View v) {
                 sendprice = sendprice_et.getText().toString();
+
+                Log.d("Asdasdas", "시시"+ sendprice);
+                Log.d("Asdasdas", "발발" + getperson);
                 if(sendprice.length() != 0 && getperson.length()  != 0){
                     flagnum = 2;
                     new JSONTask().execute("http://10.120.72.146:3000/pay");//AsyncTask 시작시킴

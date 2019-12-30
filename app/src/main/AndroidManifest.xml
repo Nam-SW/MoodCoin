@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.moodcoin.MainActivity"></activity>
-        <activity android:name="com.example.moodcoin.LobbyActivity"></activity>
+        <activity android:name="com.example.moodcoin.LobbyActivity"
+            android:launchMode="singleTop"></activity>
         <activity android:name="com.example.moodcoin.TestLobbyActivity"></activity>
         <activity android:name="com.example.moodcoin.FragmentMain"></activity>
         <activity android:name="com.example.moodcoin.FragmentFriends"></activity>

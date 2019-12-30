@@ -39,6 +39,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -63,7 +64,7 @@ public class FragmentMain extends Fragment {
     LinearLayout h1, h2, h3, fa1, fa2, fa3, d1, d2, d3, s1, s2, s3, a1, a2, a3;
     String id;
     String today;
-    TextView lobby_title, most, when, allfeel, imana, when_income, price, tv1;
+    TextView lobby_title, most, when, allfeel, imana, when_income, price, tv1, mokpyo_view;
     String happy, fireangry, disappear, sad, angry;
     static Float _happy =0f, _fireangry=0f, _disappear=0f, _sad=0f, _angry=0f;
     PieChart pieChart;
@@ -80,6 +81,7 @@ public class FragmentMain extends Fragment {
         Bundle bundle = this.getArguments();
         id = bundle.getString("id");
         today = bundle.getString("today");
+
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         mDB_ref = FirebaseDatabase.getInstance().getReference();
 
@@ -258,6 +260,7 @@ public class FragmentMain extends Fragment {
         when = (TextView)v.findViewById(R.id.when);
         allfeel = (TextView)v.findViewById(R.id.allfeel);
         price = (TextView)v.findViewById(R.id.price);
+        mokpyo_view = (TextView)v.findViewById(R.id.mokpyo_view);
 
         pieChart = (PieChart)v.findViewById(R.id.piechart);
 
@@ -297,6 +300,17 @@ public class FragmentMain extends Fragment {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             price_window.setVisibility(View.VISIBLE);
+            String get_mokpyo = "";
+            try{
+                BufferedReader get = new BufferedReader(new FileReader(getActivity().getFilesDir()+"/mokpyo.txt"));
+                get_mokpyo = get.readLine();
+                get.close();
+            }catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mokpyo_view.setText(get_mokpyo);
 
             String today_changed = date.format(new Date());
             int int_today_changed = Integer.parseInt(today_changed);
@@ -549,14 +563,7 @@ public class FragmentMain extends Fragment {
             BufferedReader get = new BufferedReader(new FileReader(getActivity().getFilesDir()+"/recent_date.txt"));
             day = get.readLine();
             get.close();
-        }catch (Exception e){
-            String testStr = "";
-            File savefile = new File(getActivity().getFilesDir()+"/recent_date.txt");
-            try{ FileOutputStream fos = new FileOutputStream(savefile);
-                fos.write(testStr.getBytes()); fos.close();}
-            catch(IOException a){}
-            day = "";
-        }
+        }catch (Exception e){ }
 
         return day;
     }

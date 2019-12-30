@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button login;
     String id, today;
-    EditText ed_id;
+    EditText ed_id, mokpyo_et;
     Date currentTime;
     String str = "";
     int cnt=0;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         login = (Button)findViewById(R.id.login);
         ed_id = (EditText)findViewById(R.id.id_input);
+        mokpyo_et = (EditText)findViewById(R.id.mokpyo);
 
         //현재 날짜를 받아옴
         currentTime  = Calendar.getInstance().getTime();
@@ -63,9 +64,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(ed_id.getText().toString().length()<18 || ed_id.getText().toString().length()>18)
                     Toast.makeText(getApplicationContext(),"ID는 숫자 18자입니다.",Toast.LENGTH_LONG).show();
+                else if(mokpyo_et.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"금액 목표치를 입력하세요.",Toast.LENGTH_LONG).show();
+                }
                 else{
                     try{
                         id = ed_id.getText().toString();
+                        String getmokpyo = mokpyo_et.getText().toString();
                         BufferedWriter bw = new BufferedWriter(new FileWriter(getFilesDir() + "check.txt", false));
                         bw.write(id);
                         bw.close();
@@ -78,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
                         BufferedWriter ischanged = new BufferedWriter(new FileWriter(getFilesDir() + "/ischecked.txt", false));
                         ischanged.write("0");
                         ischanged.close();
+                        BufferedWriter mokpyo = new BufferedWriter(new FileWriter(getFilesDir() + "/mokpyo.txt", false));
+                        mokpyo.write(getmokpyo);
+                        mokpyo.close();
                     }catch (Exception e){
                         e.printStackTrace();
                     }

@@ -300,6 +300,43 @@
                                 android:text="원"/>
                         </LinearLayout>
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#333333"
+                            android:textSize="11pt"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="내가 설정한 목표 금액"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/mokpyo_view"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#35477D"
+                                android:textSize="20pt"
+                                android:textStyle="bold"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="0"/>
+                            <TextView
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#333333"
+                                android:textSize="15pt"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="원"/>
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

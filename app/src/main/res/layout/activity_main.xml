@@ -14,83 +14,118 @@
             android:layout_width="230dp"
             android:layout_height="130dp"
             android:src="@drawable/moodicon"/>
-        <LinearLayout
-            android:orientation="vertical"
-            android:background="@drawable/round_window"
-            android:layout_width="370dp"
-            android:layout_height="380dp">
-            <TextView
-                android:fontFamily="@font/nanum"
-                android:textColor="#35477D"
-                android:textSize="11pt"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginBottom="20dp"
-                android:text="Discord ID로 로그인"/>
-            <EditText
-                android:hint="숫자만 입력"
-                android:digits="0123456789"
-                android:id="@+id/id_input"
-                android:background="@drawable/id_input"
-                android:layout_marginLeft="10dp"
-                android:paddingLeft="80dp"
-                android:layout_marginBottom="10dp"
-                android:layout_width="340dp"
-                android:layout_height="50dp"/>
-            <LinearLayout
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:textColor="#35477D"
-                    android:text="아직 회원이 아니신가요?"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textColor="#35477D"
-                    android:textStyle="bold"
-                    android:text="   회원가입 하기"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
 
-                <Button
-                    android:id="@+id/login"
-                    android:layout_width="100dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="13dp"
-                    android:background="@drawable/round_windowblue"
-                    android:text="START"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17dp"
+            <LinearLayout
+                android:layout_width="370dp"
+                android:layout_height="420dp"
+                android:background="@drawable/round_window"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:fontFamily="@font/nanum"
+                    android:text="Discord ID로 로그인"
+                    android:textColor="#35477D"
+                    android:textSize="11pt" />
 
-                    >
-                </Button>
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="Discord ID 알아내는 방법"
+                <EditText
+                    android:id="@+id/id_input"
+                    android:layout_width="340dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <ImageView
-                    android:src="@drawable/howto"
-                    android:layout_width="340dp"
-                    android:layout_height="70dp"/>
-                <ImageView
-                    android:src="@drawable/howto_content"
-                    android:layout_width="340dp"
-                    android:layout_height="70dp"/>
-            </LinearLayout>
+                    android:background="@drawable/id_input"
+                    android:digits="0123456789"
+                    android:hint="숫자만 입력"
+                    android:paddingLeft="80dp" />
 
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="14dp"
+                        android:fontFamily="@font/nanum"
+                        android:text="나의\n목표 금액은?"
+                        android:textColor="#35477D"
+                        android:textSize="8pt" />
+
+                    <EditText
+                        android:id="@+id/mokpyo"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/set_mokpyo"
+                        android:digits="0123456789"
+                        android:hint="숫자만 입력"
+                        android:paddingLeft="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="아직 회원이 아니신가요?"
+                        android:textColor="#35477D" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="   회원가입 하기"
+                        android:textColor="#35477D"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/login"
+                        android:layout_width="100dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="13dp"
+                        android:background="@drawable/round_windowblue"
+                        android:fontFamily="@font/nanum"
+                        android:text="START"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17dp"
+
+                        ></Button>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Discord ID 알아내는 방법" />
+
+                    <ImageView
+                        android:layout_width="340dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/howto" />
+
+                    <ImageView
+                        android:layout_width="340dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/howto_content" />
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

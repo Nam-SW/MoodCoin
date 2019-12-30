@@ -42,6 +42,9 @@ public class FragmentSettings extends Fragment {
                     BufferedWriter sendprice_br = new BufferedWriter(new FileWriter(getActivity().getFilesDir() + "recent_send_price.txt", false));
                     sendprice_br.write("0");
                     sendprice_br.close();
+                    BufferedWriter mokpyo = new BufferedWriter(new FileWriter(getActivity().getFilesDir() + "/mokpyo.txt", false));
+                    mokpyo.write("0");
+                    mokpyo.close();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                     getActivity().finish();
