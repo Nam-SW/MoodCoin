@@ -611,8 +611,8 @@ public class FragmentMain extends Fragment {
                 BufferedReader reader = null;
                 Log.d("asdsad", jsonObject.toString());
                 try{
-                    URL url = new URL("http://10.120.72.146:3000/statemoney"); //주소
-                    if(flagnum == 1)  url = new URL("http://10.120.72.146:3000/mywallet");
+                    URL url = new URL("http://10.120.72.146:3000/mywallet"); //주소
+                    if(flagnum == 1)  url = new URL("http://10.120.72.146:3000/statemoney");
                     //URL url = new URL(urls[0]);
                     //연결을 함
                     con = (HttpURLConnection) url.openConnection();
