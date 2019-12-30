@@ -689,7 +689,9 @@ public class FragmentMain extends Fragment {
             if(flagnum == 1){
                 tv1.setText(result);
                 flagnum = 2;
-                new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+
+                if(!getRecentDay().equals(today))
+                    new JSONTask().execute("http://10.120.72.146:3000/statemoney");
 
             } else if(flagnum == 2){
                 tv1.setText(result);
