@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 emotion = ['', '기쁨', '분노', '불안', '슬픔', '짜증']
-# moodcoin = MoodCoin() # AI 모델
+moodcoin = MoodCoin() # AI 모델
 
 DB_link = 'https://moodcoin-e9a22.firebaseio.com'
 DB_cred = './moodcoin.json'
