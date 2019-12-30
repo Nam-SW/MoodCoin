@@ -409,7 +409,8 @@ public class FragmentMain extends Fragment {
                 String get_price = br.readLine();
                 br.close();
                 price.setText(get_price);
-                addprice = price.getText().toString();
+
+                addprice = get_price;
                 flagnum = 1;
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
                 Log.d("마마", "flagnum2" + flagnum);
@@ -612,7 +613,9 @@ public class FragmentMain extends Fragment {
                 Log.d("asdsad", jsonObject.toString());
                 try{
                     URL url = new URL("http://10.120.72.146:3000/mywallet"); //주소
-                    if(flagnum == 2)  url = new URL("http://10.120.72.146:3000/statemoney");
+                    if(flagnum == 2) {
+                        url = new URL("http://10.120.72.146:3000/statemoney");
+                    }
                     //URL url = new URL(urls[0]);
                     //연결을 함
                     con = (HttpURLConnection) url.openConnection();
