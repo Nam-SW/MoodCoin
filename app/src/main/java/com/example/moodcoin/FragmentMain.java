@@ -263,14 +263,16 @@ public class FragmentMain extends Fragment {
 
         addprice = price.getText().toString();
         flagnum = 1;
-        new JSONTask().execute("http://10.120.72.146:3000/statemoney");
-        flagnum = 2;
         new JSONTask().execute("http://10.120.72.146:3000/mywallet");
+        flagnum = 2;
+        new JSONTask().execute("http://10.120.72.146:3000/statemoney");
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 mDB_ref.addListenerForSingleValueEvent(Listener);
+                new JSONTask().execute("http://10.120.72.146:3000/mywallet");
+                new JSONTask().execute("http://10.120.72.146:3000/statemoney");
                 swipeRefreshLayout.setRefreshing((false));
             }
         });
@@ -609,7 +611,7 @@ public class FragmentMain extends Fragment {
                 Log.d("asdsad", jsonObject.toString());
                 try{
                     URL url = new URL("http://10.120.72.146:3000/statemoney"); //주소
-                    if(flagnum == 2)  url = new URL("http://10.120.72.146:3000/mywallet");
+                    if(flagnum == 1)  url = new URL("http://10.120.72.146:3000/mywallet");
                     //URL url = new URL(urls[0]);
                     //연결을 함
                     con = (HttpURLConnection) url.openConnection();
@@ -671,9 +673,9 @@ public class FragmentMain extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(flagnum == 1){
+            if(flagnum == 2){
 
-            }else if(flagnum == 2){
+            }else if(flagnum == 1){
                 tv1.setText(result);
             }
         }
