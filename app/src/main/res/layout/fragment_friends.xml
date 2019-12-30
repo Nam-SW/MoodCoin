@@ -37,7 +37,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/help_window"
                 android:elevation="10dp"
                 android:layout_margin="20dp"
@@ -141,16 +140,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:text="원"/>
-                            <TextView
-                                android:id="@+id/getperson"
-                                android:fontFamily="@font/nanum"
-                                android:textColor="#333333"
-                                android:textSize="8pt"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:text="원"/>
                         </LinearLayout>
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/getperson"
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#333333"
+                            android:textSize="1pt"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="원"/>
                         <TextView
                             android:fontFamily="@font/nanum"
                             android:textColor="#333333"
