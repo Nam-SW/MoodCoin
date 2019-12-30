@@ -1,4 +1,4 @@
-package com.example.moodcoin;
+qpackage com.example.moodcoin;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -690,9 +690,8 @@ public class FragmentMain extends Fragment {
                 tv1.setText(result);
                 flagnum = 2;
                 new JSONTask().execute("http://10.120.72.146:3000/statemoney");
-
             } else if(flagnum == 2){
-                price.setText(result);
+                tv1.setText(result);
             }
         }
     }
