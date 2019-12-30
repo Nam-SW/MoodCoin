@@ -268,8 +268,9 @@ public class FragmentMain extends Fragment {
                 mDB_ref.addListenerForSingleValueEvent(Listener);
                 flagnum = 1;
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
-                flagnum = 2;
-                new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+                if(flagnum == 2){
+                    new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+                }
                 swipeRefreshLayout.setRefreshing((false));
             }
         });
@@ -406,6 +407,7 @@ public class FragmentMain extends Fragment {
 
         private void reported_price(){
             try{
+                //성범
                 BufferedReader br = new BufferedReader(new FileReader(getActivity().getFilesDir()+"recent_send_price.txt"));
                 String get_price = br.readLine();
                 br.close();
@@ -416,10 +418,10 @@ public class FragmentMain extends Fragment {
                 Log.d("dd", "flagnum1됬다");
 
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
-
-//                flagnum = 2;
-//                Log.d("dd", "flagnum2됬다");
-//                new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+                Log.d("마마", "메오오오" + flagnum);
+                if(flagnum == 2) {
+                    new JSONTask().execute("http://10.120.72.146:3000/statemoney");
+                }
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -686,6 +688,7 @@ public class FragmentMain extends Fragment {
             super.onPostExecute(result);
             if(flagnum == 1){
                 tv1.setText(result);
+                flagnum = 2;
             } else if(flagnum == 2){
                 price.setText(result);
             }
