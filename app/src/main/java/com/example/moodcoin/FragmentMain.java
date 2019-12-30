@@ -599,11 +599,11 @@ public class FragmentMain extends Fragment {
             try {
                 //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
                 JSONObject jsonObject = new JSONObject();
-                if(flagnum == 1){
+                if(flagnum == 2){
                     jsonObject.accumulate("sendperson", id);
                     jsonObject.accumulate("addprice", addprice);
 
-                }else if(flagnum == 2){
+                }else if(flagnum == 1){
                     jsonObject.accumulate("sendperson", id);
                 }
                 HttpURLConnection con = null;
@@ -674,7 +674,7 @@ public class FragmentMain extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(flagnum == 2){
-
+                price.setText(result);
             }else if(flagnum == 1){
                 tv1.setText(result);
             }
