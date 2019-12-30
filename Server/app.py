@@ -22,15 +22,21 @@ def chat_update():
     print(id + ': ' + talk)
 
     pred = moodcoin.predict(talk)[0]
+    print('예측 완료')
     if pred == 0: # 대화한 내용이 뜻이 없는 업무적 내용 등일 경우
+        print('감정 없음')
         return ''
 
-
+    print(emotion[pred])
     database = db.reference(id).get()
+    print(database)
     keys = list(database.keys())
+    print(keys)
     keys.remove('friends')
+    print(keys)
     today = max(keys) # 가장 최근 날짜
-    database[today][emotion[1]] += 1
+    database[today][emotion[pred]] += 1
+    print(database)
     db.reference(id).child(today).set(database[today])
     return ''
     
