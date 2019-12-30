@@ -604,9 +604,11 @@ public class FragmentMain extends Fragment {
                 JSONObject jsonObject = new JSONObject();
                 if(flagnum == 1){
                     jsonObject.accumulate("sendperson", id);
+                    Log.d("확인", "flag1 접속");
                 }else if(flagnum == 2){
                     jsonObject.accumulate("sendperson", id);
                     jsonObject.accumulate("addprice", addprice);
+                    Log.d("확인", "flag2 접속");
                 }
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
