@@ -3,6 +3,7 @@ package com.example.moodcoin;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,8 +26,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,11 +46,17 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class FragmentFriends extends Fragment {
+    TextView tv1;
+    String sendprice;
+    String getperson;
+    int flagnum = 1;
+    Button btn1;
+    EditText sendprice_et;
     DatabaseReference mDB_ref;
-    TextView friends_count, friends_table, help_suggestion;
+    TextView friends_count, friends_table, help_suggestion, getperson_tv;
     HashMap<String, Object> childUpdates = null;
     Button add_friend, delete_friend;
-    LinearLayout help_window;
+    LinearLayout help_window, my_friends_list_window;
     String id;
     String today;
     String happy, fireangry, disappear, sad, angry;
@@ -50,13 +69,18 @@ public class FragmentFriends extends Fragment {
         today = bundle.getString("today");
 
         View v = inflater.inflate(R.layout.fragment_friends, container, false);
-
+        tv1 = (TextView)v.findViewById(R.id.tv1);
+        btn1 = (Button)v.findViewById(R.id.button);
+        getperson_tv = (TextView) v.findViewById(R.id.getperson);
         friends_count = (TextView) v.findViewById(R.id.friends_count);
         friends_table = (TextView) v.findViewById(R.id.friends_table);
         help_suggestion = (TextView) v.findViewById(R.id.help_suggestion);
         add_friend = (Button) v.findViewById(R.id.add_friend);
         delete_friend = (Button) v.findViewById(R.id.delete_friend);
         help_window = (LinearLayout) v.findViewById(R.id.help_window);
+        my_friends_list_window = (LinearLayout) v.findViewById(R.id.my_friends_list_window);
+        sendprice_et = (EditText)v.findViewById(R.id.sendprice_et);
+        final SwipeRefreshLayout swipeRefreshLayout = v.findViewById(R.id.swipe_refresh_layout);
 
         mDB_ref = FirebaseDatabase.getInstance().getReference();
         mDB_ref.addListenerForSingleValueEvent(Listener);
@@ -75,12 +99,37 @@ public class FragmentFriends extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new JSONTask().execute("http://10.120.72.146:3000/");//AsyncTask 시작시킴
+                mDB_ref.addListenerForSingleValueEvent(Listener);
+                swipeRefreshLayout.setRefreshing((false));
+            }
+        });
+
+        new JSONTask().execute("http://10.120.72.146:3000/");
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendprice = sendprice_et.getText().toString();
+                if(sendprice.length() != 0 && getperson.length()  != 0){
+                    flagnum = 2;
+                    new JSONTask().execute("http://10.120.72.146:3000/pay");//AsyncTask 시작시킴
+                }else{
+                    Toast.makeText(getActivity(), "값을 모두 입력해주세요", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         return v;
     }
 
     ValueEventListener Listener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            my_friends_list_window.setVisibility(View.VISIBLE);
+
             String value = "";
             String today_changed = date.format(new Date());
             int int_today_changed = Integer.parseInt(today_changed);
@@ -116,46 +165,62 @@ public class FragmentFriends extends Fragment {
                 value = dataSnapshot.child(id).child("friends").child("name_list").getValue().toString();
                 friends_table.setText(value);
                 String help_roulette[] = value.split("\n");
-                int len = help_roulette.length;
-                String roulette_survived[] = new String[len];
-                int z = 0;
-                for(int i = 0; i < help_roulette.length ; i++){
-                    Log.d("ㅇㅇ",help_roulette[i]);
-                    String mydb_getid = dataSnapshot.child(id).child("friends").child(help_roulette[i]).getValue().toString();
-                    try{
-                        int[] moods_f = {
-                                Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("기쁨").getValue().toString()),
-                                Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("분노").getValue().toString()),
-                                Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("불안").getValue().toString()),
-                                Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("슬픔").getValue().toString()),
-                                Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("짜증").getValue().toString())
-                        };
-                        String[] most_arr = {"기쁨", "분노", "불안", "슬픔", "짜증"};
-                        int max=0, cnt=0;
-                        for(int j = 0; j < 5; j++){
-                            if(max < moods_f[j]){
-                                max = moods_f[j];
-                                cnt = j;
-                            }
-                        }
-                        if(!most_arr[cnt].equals("기쁨") && cnt != 0){
-                            roulette_survived[z] = help_roulette[i];
-                            Log.d("생존자",roulette_survived[z]);
-                            z++;
-                        }
-                    }catch (Exception e){}
+                String roulette_survived[] = new String[help_roulette.length];
+                for(int i=0; i < roulette_survived.length; i++){
+                    roulette_survived[i] = "";
                 }
-                //Log.d("생존자",roulette_survived[(int)(Math.random()*(roulette_survived.length - 1))]);
+                String survived_id[] = new String[help_roulette.length];
+                if(gethighest().trim().equals("기쁨")){
+                    int z = 0;
+                    for(int i = 0; i < help_roulette.length ; i++){
+                        Log.d("ㅇㅇ",help_roulette[i]);
+                        String mydb_getid = dataSnapshot.child(id).child("friends").child(help_roulette[i]).getValue().toString();
+                        try{
+                            int[] moods_f = {
+                                    Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("기쁨").getValue().toString()),
+                                    Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("분노").getValue().toString()),
+                                    Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("불안").getValue().toString()),
+                                    Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("슬픔").getValue().toString()),
+                                    Integer.parseInt(dataSnapshot.child(mydb_getid).child(today).child("짜증").getValue().toString())
+                            };
+                            String[] most_arr = {"기쁨", "분노", "불안", "슬픔", "짜증"};
+                            int max=0, cnt=0;
+                            for(int j = 0; j < 5; j++){
+                                if(max < moods_f[j]){
+                                    max = moods_f[j];
+                                    cnt = j;
+                                }
+                            }
+                            if(!most_arr[cnt].equals("기쁨") && cnt != 0){
+                                roulette_survived[z] = help_roulette[i];
+                                survived_id[z] = mydb_getid;
+                                z++;
+                            }
+
+                            int real_len=0;
+                            for (int k = 0; k < roulette_survived.length; k++){
+                                if(roulette_survived[k].equals("") && k==0)
+                                    break;
+                                else if(!roulette_survived[k].equals(""))
+                                    real_len++;
+                            }
+                            if(real_len!=0){
+                                int aa = (int)(Math.random()*(real_len));
+                                help_window.setVisibility(View.VISIBLE);
+                                help_suggestion.setText(roulette_survived[aa]);
+                                getperson_tv.setText(survived_id[aa]);
+                                getperson = survived_id[aa];
+                            }
+
+                        }catch (Exception e){}
+                    }
+                }else
+                    help_window.setVisibility(View.GONE);
+
             }catch(Exception e){
                 childUpdates.put(id + "/friends/name_list","");
                 mDB_ref.updateChildren(childUpdates);
                 friends_table.setText("");
-            }
-
-            if(gethighest().trim().equals("기쁨")){
-                help_window.setVisibility(View.VISIBLE);
-            }else{
-                help_window.setVisibility(View.GONE);
             }
 
         }
@@ -303,5 +368,97 @@ public class FragmentFriends extends Fragment {
         builder.show();
     }
 
+    public class JSONTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
+                JSONObject jsonObject = new JSONObject();
+                if(flagnum == 1){
+                    jsonObject.accumulate("sendperson", id);
+
+                }else if(flagnum == 2){
+                    jsonObject.accumulate("sendperson", id);
+                    jsonObject.accumulate("getperson", getperson );
+                    jsonObject.accumulate("sendprice", sendprice);
+                }
+                HttpURLConnection con = null;
+                BufferedReader reader = null;
+                Log.d("asdsad", jsonObject.toString());
+                try{
+                    URL url = new URL("http://10.120.72.146:3000/");
+                    if(flagnum == 2)  url = new URL("http://10.120.72.146:3000/pay");
+                    //URL url = new URL(urls[0]);
+                    //연결을 함
+                    con = (HttpURLConnection) url.openConnection();
+
+                    con.setRequestMethod("POST");//POST방식으로 보냄
+                    con.setRequestProperty("Cache-Control", "no-cache");//캐시 설정
+                    con.setRequestProperty("Content-Type", "application/json");//application JSON 형식으로 전송
+
+
+                    con.setRequestProperty("Accept", "text/html");//서버에 response 데이터를 html로 받음
+                    con.setDoOutput(true);//Outstream으로 post 데이터를 넘겨주겠다는 의미
+                    con.setDoInput(true);//Inputstream으로 서버로부터 응답을 받겠다는 의미
+                    con.connect();
+
+                    //서버로 보내기위해서 스트림 만듬
+                    OutputStream outStream = con.getOutputStream();
+                    //버퍼를 생성하고 넣음
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
+                    writer.write(jsonObject.toString());
+                    writer.flush();
+                    writer.close();//버퍼를 받아줌
+
+                    //서버로 부터 데이터를 받음
+                    InputStream stream = con.getInputStream();
+
+                    reader = new BufferedReader(new InputStreamReader(stream));
+
+                    StringBuffer buffer = new StringBuffer();
+
+                    String line = "";
+                    while((line = reader.readLine()) != null){
+                        buffer.append(line);
+                    }
+
+                    return buffer.toString();//서버로 부터 받은 값을 리턴해줌 아마 OK!!가 들어올것임
+
+                } catch (MalformedURLException e){
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if(con != null){
+                        con.disconnect();
+                    }
+                    try {
+                        if(reader != null){
+                            reader.close();//버퍼를 닫아줌
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.matches(".*[0-9].*")){
+                tv1.setText(result);//서버로 부터 받은 값을 출력해주는 부
+            }
+            else{
+                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 }
+
+

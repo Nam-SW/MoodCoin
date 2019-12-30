@@ -6,8 +6,8 @@
         android:title="홈" />
     <item
         android:id="@+id/cameraItem"
-        android:icon="@drawable/weekly"
-        android:title="주간" />
+        android:icon="@drawable/friends"
+        android:title="친구" />
     <item
         android:id="@+id/callItem"
         android:icon="@drawable/settings"

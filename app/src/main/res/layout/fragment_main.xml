@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="30dp"
-                    android:text="텍스트"
+                    android:text="로딩중입니다...\n계속 안될 경우\n네트워크를 확인하세요"
                     android:textColor="#F67280"
                     android:textSize="15pt"/>
             </LinearLayout>
@@ -156,6 +163,7 @@
                 </com.github.mikephil.charting.charts.PieChart>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/price_window"
                 android:elevation="10dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/main_block_radius"
@@ -172,7 +180,6 @@
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                         <TextView
                             android:gravity="center"
                             android:id="@+id/when"
@@ -210,6 +217,7 @@
                             android:textSize="13pt"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/when_box"
                         android:layout_gravity="center"
                         android:orientation="vertical"
                         android:layout_width="300dp"
@@ -244,6 +252,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:text="원"/>
+
                         </LinearLayout>
                         <TextView
                             android:fontFamily="@font/scd"
@@ -271,7 +280,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:id="@+id/totalprice"
+                                android:id="@+id/tv1"
                                 android:fontFamily="@font/nanum"
                                 android:textColor="#35477D"
                                 android:textSize="20pt"
@@ -290,15 +299,1043 @@
                                 android:text="원"/>
                         </LinearLayout>
                     </LinearLayout>
-
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/recommendation"
+                android:elevation="10dp"
+                android:padding="20dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/main_block_radius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+                <LinearLayout
+                    android:id="@+id/rec_h"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="기쁨"
+                            android:textColor="#FF8A80"
+                            android:textSize="13pt"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="이 많은 당신을 위해"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="준비했어요!"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/ikulim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="이런 음악 / 동영상은 어떠세요?"
+                        android:textColor="#7A7A7A"
+                        android:textSize="8pt"/>
+                    <LinearLayout
+                        android:id="@+id/h1"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/happy_1"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="아이유(IU) - Love Poem Remix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="정했다일기석"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="7.4천"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/h2"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/happy_2"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="스키장 알바 추천한 Job것 언놈이냐; ❄겨울철 대표 알바❄ 선배고 PD고 죄다 눈에 빠져서 재난영화 찍을 뻔한 스키장 알바 리뷰ㅣ워크맨 ep.33"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="워크맨-Workman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="7.5만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/h3"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/happy_3"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="펭수 요원, 폭발을 시켜야만 한다!"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="자이언트 펭TV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="2.5만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/rec_fa"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="MissingConstraints">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:fontFamily="@font/ikulim"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="분노"
+                                android:textColor="#FF8A80"
+                                android:textSize="13pt"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:fontFamily="@font/ikulim"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="가 많은 당신을 위해"
+                                android:textColor="#333333"
+                                android:textSize="13pt"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:fontFamily="@font/ikulim"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="준비했어요!"
+                                android:textColor="#333333"
+                                android:textSize="13pt"/>
+                        </LinearLayout>
+                        <TextView
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/ikulim"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="이런 음악 / 동영상은 어떠세요?"
+                            android:textColor="#7A7A7A"
+                            android:textSize="8pt"/>
+                        <LinearLayout
+                            android:id="@+id/fa1"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp">
+                            <ImageView
+                                android:src="@drawable/fireangry_1"
+                                android:layout_width="170dp"
+                                android:layout_height="120dp"/>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:padding="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp">
+                                <TextView
+                                    android:textColor="#292929"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="8pt"
+                                    android:text="지금 당장 화를 가라앉히는 두 가지 방법 "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:textColor="#6F6F6F"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textSize="6.5pt"
+                                    android:text="책그림"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <LinearLayout
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <ImageView
+                                        android:src="@drawable/like"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                    <TextView
+                                        android:layout_marginTop="5dp"
+                                        android:textColor="#414141"
+                                        android:ellipsize="end"
+                                        android:maxLines="2"
+                                        android:textSize="7pt"
+                                        android:text="1.5천"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/fa2"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp">
+                            <ImageView
+                                android:src="@drawable/fireangry_2"
+                                android:layout_width="170dp"
+                                android:layout_height="120dp"/>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:padding="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp">
+                                <TextView
+                                    android:textColor="#292929"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="8pt"
+                                    android:text="Billie Eilish - bury a friend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:textColor="#6F6F6F"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textSize="6.5pt"
+                                    android:text="Billie Eilish"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <LinearLayout
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <ImageView
+                                        android:src="@drawable/like"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                    <TextView
+                                        android:layout_marginTop="5dp"
+                                        android:textColor="#414141"
+                                        android:ellipsize="end"
+                                        android:maxLines="2"
+                                        android:textSize="7pt"
+                                        android:text="615만"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/fa3"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp">
+                            <ImageView
+                                android:src="@drawable/fireangry_3"
+                                android:layout_width="170dp"
+                                android:layout_height="120dp"/>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:padding="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp">
+                                <TextView
+                                    android:textColor="#292929"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="8pt"
+                                    android:text="Outsider (아웃사이더) - 주변인 "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:textColor="#6F6F6F"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textSize="6.5pt"
+                                    android:text="iPoppinJH"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <LinearLayout
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <ImageView
+                                        android:src="@drawable/like"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                    <TextView
+                                        android:layout_marginTop="5dp"
+                                        android:textColor="#414141"
+                                        android:ellipsize="end"
+                                        android:maxLines="2"
+                                        android:textSize="7pt"
+                                        android:text="1.3천"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/rec_d"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="불안"
+                            android:textColor="#FF8A80"
+                            android:textSize="13pt"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="이 많은 당신을 위해"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="준비했어요!"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/ikulim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="이런 음악 / 동영상은 어떠세요?"
+                        android:textColor="#7A7A7A"
+                        android:textSize="8pt"/>
+                    <LinearLayout
+                        android:id="@+id/d1"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/disappear_1"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="마음이 안정되지 않을 때, 불안을 다스리는 방법. "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="하우투 : 하루를 우리에게 투자한다면"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="1.6만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/d2"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/disappear_2"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="아마두 (Feat. 우원재, 김효은, 넉살, Huckleberry P) - 다모임 [DF LIVE] / 염따 딥플로우 팔로알토 사이먼도미닉 더콰이엇"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="dingo freestyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="10만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/d3"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/disappear_3"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="고양이들이 처음으로 아기를 만났어요! "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="크림히어로즈"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="11만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/rec_s"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="슬픔"
+                            android:textColor="#FF8A80"
+                            android:textSize="13pt"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="이 많은 당신을 위해"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="준비했어요!"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/ikulim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="이런 음악 / 동영상은 어떠세요?"
+                        android:textColor="#7A7A7A"
+                        android:textSize="8pt"/>
+                    <LinearLayout
+                        android:id="@+id/s1"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/sad_1"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="Billie Eilish - Bellyache"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="Billie Eilish"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="1.6만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/s2"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/sad_2"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="02 임창정 - 소주 한 잔"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="워너뮤직코리아 (Warner Music Korea)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="10만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/s3"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/sad_3"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="[ENG SUB] 우울증 l ASMR Depression "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="ASMR Ouvir"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="627"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/rec_a"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="짜증"
+                            android:textColor="#FF8A80"
+                            android:textSize="13pt"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="이 많은 당신을 위해"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:fontFamily="@font/ikulim"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="준비했어요!"
+                            android:textColor="#333333"
+                            android:textSize="13pt"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/ikulim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="이런 음악 / 동영상은 어떠세요?"
+                        android:textColor="#7A7A7A"
+                        android:textSize="8pt"/>
+                    <LinearLayout
+                        android:id="@+id/a1"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/angry_1"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="화, 짜증, 분노, 스트레스 극복하는법 - 감정을 설명하다 1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="HigherSelfKorea"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="4.7천"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/a2"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/angry_2"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="[심심풀이] 보면 기분 좋아지는 영상 16탄 "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="심심풀이 TV - TimeKiller"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="4.6천"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/a3"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:src="@drawable/angry_3"
+                            android:layout_width="170dp"
+                            android:layout_height="120dp"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+                            <TextView
+                                android:textColor="#292929"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:textSize="8pt"
+                                android:text="곽철용 (Iron Dragon) - 묻고 더블로 가 Remix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="#6F6F6F"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="6.5pt"
+                                android:text="정했다일기석"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:src="@drawable/like"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#414141"
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
+                                    android:textSize="7pt"
+                                    android:text="1.8만"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-
-
-
-
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

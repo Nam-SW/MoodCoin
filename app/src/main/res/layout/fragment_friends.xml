@@ -1,45 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/happy"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/fireangry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/disappear"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/sad"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/angry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,7 +22,7 @@
                 android:elevation="10dp"
                 android:layout_margin="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="145dp"
                 tools:ignore="MissingConstraints">
                 <TextView
                     android:fontFamily="@font/ikulim"
@@ -61,14 +31,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="30dp"
-                    android:text="0명의 친구가\n연결되어 있어요"
+                    android:text="로딩중입니다...\n계속 안될 경우\n네트워크를 확인하세요"
                     android:textColor="#F67280"
                     android:textSize="15pt"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/help_window"
                 android:visibility="gone"
+                android:id="@+id/help_window"
                 android:elevation="10dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/main_block_radius"
@@ -154,7 +124,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:id="@+id/price"
+                                android:id="@+id/tv1"
                                 android:fontFamily="@font/nanum"
                                 android:textColor="#35477D"
                                 android:textSize="15pt"
@@ -167,6 +137,15 @@
                                 android:fontFamily="@font/nanum"
                                 android:textColor="#333333"
                                 android:textSize="10pt"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="원"/>
+                            <TextView
+                                android:id="@+id/getperson"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#333333"
+                                android:textSize="8pt"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:layout_marginBottom="10dp"
@@ -187,7 +166,7 @@
                             <EditText
                                 android:hint="금액을 입력하세요"
                                 android:digits="0123456789"
-                                android:id="@+id/id_input"
+                                android:id="@+id/sendprice_et"
                                 android:background="@drawable/send_money"
                                 android:layout_marginLeft="10dp"
                                 android:paddingLeft="60dp"
@@ -203,7 +182,7 @@
                         android:layout_height="100dp">
                         <Button
                             android:layout_gravity="center"
-                            android:id="@+id/send_money"
+                            android:id="@+id/button"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:layout_marginTop="10dp"
@@ -230,6 +209,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_friends_list_window"
+                android:visibility="gone"
                 android:elevation="10dp"
                 android:layout_margin="20dp"
                 android:paddingBottom="20dp"
@@ -320,3 +301,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,6 +1,8 @@
 package com.example.moodcoin;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -45,10 +49,11 @@ public class FragmentMain extends Fragment {
 
     HashMap<String, Object> childUpdates = null;
     DatabaseReference mDB_ref;
-    LinearLayout no, yes, most_things_view;
+    LinearLayout no, yes, most_things_view, price_window, rec_h, rec_fa, rec_d, rec_s, rec_a, recommandation, when_box;
+    LinearLayout h1, h2, h3, fa1, fa2, fa3, d1, d2, d3, s1, s2, s3, a1, a2, a3;
     String id;
     String today;
-    TextView lobby_title, most, when, allfeel, imana;
+    TextView lobby_title, most, when, allfeel, imana, when_income, price, tv1;
     String happy, fireangry, disappear, sad, angry;
     static Float _happy =0f, _fireangry=0f, _disappear=0f, _sad=0f, _angry=0f;
     PieChart pieChart;
@@ -63,23 +68,193 @@ public class FragmentMain extends Fragment {
         Bundle bundle = this.getArguments();
         id = bundle.getString("id");
         today = bundle.getString("today");
-
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         mDB_ref = FirebaseDatabase.getInstance().getReference();
 
+        final SwipeRefreshLayout swipeRefreshLayout = v.findViewById(R.id.swipe_refresh_layout);
         mDB_ref.addListenerForSingleValueEvent(Listener);
 
         no = (LinearLayout)v.findViewById(R.id.no_info);
         yes = (LinearLayout)v.findViewById(R.id.yes_info);
         most_things_view = (LinearLayout)v.findViewById(R.id.most_things_view);
+        price_window = (LinearLayout)v.findViewById(R.id.price_window);
+        rec_a = (LinearLayout)v.findViewById(R.id.rec_a);
+        rec_fa = (LinearLayout)v.findViewById(R.id.rec_fa);
+        rec_d = (LinearLayout)v.findViewById(R.id.rec_d);
+        rec_s = (LinearLayout)v.findViewById(R.id.rec_s);
+        rec_h = (LinearLayout)v.findViewById(R.id.rec_h);
+        recommandation = (LinearLayout)v.findViewById(R.id.recommendation);
+        when_box = (LinearLayout)v.findViewById(R.id.when_box);
 
+        h1 = (LinearLayout)v.findViewById(R.id.h1);
+        h2 = (LinearLayout)v.findViewById(R.id.h2);
+        h3 = (LinearLayout)v.findViewById(R.id.h3);
+        fa1 = (LinearLayout)v.findViewById(R.id.fa1);
+        fa2 = (LinearLayout)v.findViewById(R.id.fa2);
+        fa3 = (LinearLayout)v.findViewById(R.id.fa3);
+        d1 = (LinearLayout)v.findViewById(R.id.d1);
+        d2 = (LinearLayout)v.findViewById(R.id.d2);
+        d3 = (LinearLayout)v.findViewById(R.id.d3);
+        s1 = (LinearLayout)v.findViewById(R.id.s1);
+        s2 = (LinearLayout)v.findViewById(R.id.s2);
+        s3 = (LinearLayout)v.findViewById(R.id.s3);
+        a1 = (LinearLayout)v.findViewById(R.id.a1);
+        a2 = (LinearLayout)v.findViewById(R.id.a2);
+        a3 = (LinearLayout)v.findViewById(R.id.a3);
+
+        h1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=cmv37FtCwj8");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        h2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=7anO9e8ozP8");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        h3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=bwzjR-hvj9Q");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        fa1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=mLLtYA-VcAA");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        fa2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=HUHC9tYz8ik");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        fa3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=MWTcdrtdpcY");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        d1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=MVr_AVI8LSw");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        d2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=LHUAmHYOXFM");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        d3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=IC1Zv4CXnAE");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        s1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=gBRi6aZJGj4");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        s2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=sF9sv9lT83A");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        s3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=QLtqTGjQLCk");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        a1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=J5uapKonaG0");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        a2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=D-rB9IhRQTM&t=2s");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        a3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=g7MlANTSPmM");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+
+        when_income = (TextView)v.findViewById(R.id.when_income);
         imana = (TextView)v.findViewById(R.id.imana);
         lobby_title = (TextView)v.findViewById(R.id.lobby_title);
         most = (TextView)v.findViewById(R.id.most);
         when = (TextView)v.findViewById(R.id.when);
         allfeel = (TextView)v.findViewById(R.id.allfeel);
+        price = (TextView)v.findViewById(R.id.price);
 
         pieChart = (PieChart)v.findViewById(R.id.piechart);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mDB_ref.addListenerForSingleValueEvent(Listener);
+                swipeRefreshLayout.setRefreshing((false));
+            }
+        });
 
         return v;
     }
@@ -102,6 +277,8 @@ public class FragmentMain extends Fragment {
         int cnt = 0;
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            price_window.setVisibility(View.VISIBLE);
+
             String today_changed = date.format(new Date());
             int int_today_changed = Integer.parseInt(today_changed);
             if(int_today_changed > Integer.parseInt(today))
@@ -124,7 +301,7 @@ public class FragmentMain extends Fragment {
                 _fireangry = Float.parseFloat(fireangry);
                 _angry = Float.parseFloat(angry);
                 _disappear = Float.parseFloat(disappear);
-                _sad = Float.parseFloat(angry);
+                _sad = Float.parseFloat(sad);
                 setChart();
                 try {
                     setPriceInfo();
@@ -137,6 +314,7 @@ public class FragmentMain extends Fragment {
         }
 
         private void setPriceInfo() throws IOException {
+            String send_price;
             String h = hour.format(new Date());
             String m = min.format(new Date());
             int hh = Integer.parseInt(h);
@@ -151,13 +329,31 @@ public class FragmentMain extends Fragment {
                         catch (Exception e) {
                             e.printStackTrace();
                         }
+                        String got = gethighest();
+                        String got_arrayed[] = got.split(" ");
+                        String selected = got_arrayed[1+(int)(Math.random()*(got_arrayed.length-1))];
+                        switch (selected){
+                            case "기쁨": send_price = "700"; break;
+                            case "분노": send_price = "400"; break;
+                            case "슬픔": send_price = "200"; break;
+                            case "불안": send_price = "300"; break;
+                            case "짜증": send_price = "500"; break;
+                            default: send_price = "0"; break;
+                        }
+                        BufferedWriter sendprice_br = new BufferedWriter(new FileWriter(getActivity().getFilesDir() + "recent_send_price.txt", false));
+                        sendprice_br.write(send_price);
+                        sendprice_br.close();
                     }
                 }
                 if(getRecentDay().equals("0")){ //오늘과 이전 데이터가 없을 경우
                     no_prev_data();
                 }else if(getRecentDay().equals(today)){ //오늘 데이터가 있을 경우
+                    when_box.setVisibility(View.VISIBLE);
                     when.setText("오늘은 대체적으로");
                     allfeel.setText(getRecentSum());
+                    imana.setText("(이)가 많아 보였어요");
+                    when_income.setText("오늘 입금된 금액");
+                    reported_price();
                 }else if(!getRecentDay().equals("0")){ //오늘은 없어도 이전 데이터가 있을 경우
                     show_prev_data();
                 }
@@ -175,14 +371,31 @@ public class FragmentMain extends Fragment {
         }
 
         private void show_prev_data(){
+            when_box.setVisibility(View.VISIBLE);
             when.setText(getRecentDay().substring(4,6) + "월" + getRecentDay().substring(6,8) + "일에는 대체적으로");
             allfeel.setText(getRecentSum());
+            imana.setText("(이)가 많아 보였어요");
+            when_income.setText("어제 입금된 금액");
+            reported_price();
         }
 
         private void no_prev_data(){
+            when_box.setVisibility(View.GONE);
             when.setText("아직 이전");
             imana.setText("데이터가 없네요");
             allfeel.setText("");
+        }
+
+        private void reported_price(){
+            try{
+                BufferedReader br = new BufferedReader(new FileReader(getActivity().getFilesDir()+"recent_send_price.txt"));
+                String get_price = br.readLine();
+                br.close();
+                price.setText(get_price);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         private void setChart(){
@@ -240,15 +453,29 @@ public class FragmentMain extends Fragment {
                 if(!most_arr_sum[k].equals(""))
                     sum = sum +" " + most_arr_sum[k];
             }
+            rec_h.setVisibility(View.GONE);
+            rec_fa.setVisibility(View.GONE);
+            rec_d.setVisibility(View.GONE);
+            rec_s.setVisibility(View.GONE);
+            rec_a.setVisibility(View.GONE);
             if(max == 0){
                 no.setVisibility(View.VISIBLE);
                 yes.setVisibility(View.GONE);
+                recommandation.setVisibility(View.GONE);
                 sum = "X";
                 lobby_title.setText("내일이면 소멸되는 남은 당신의 소중한 하루를\n부디 후회없이 보내길 바래요..!");
             }else{
                 yes.setVisibility(View.VISIBLE);
                 no.setVisibility(View.GONE);
+                recommandation.setVisibility(View.VISIBLE);
                 lobby_title.setText(title[cnt]);
+                switch (most_arr[cnt]){
+                    case "기쁨" : rec_h.setVisibility(View.VISIBLE); break;
+                    case "분노" : rec_fa.setVisibility(View.VISIBLE); break;
+                    case "불안" : rec_d.setVisibility(View.VISIBLE); break;
+                    case "슬픔" : rec_s.setVisibility(View.VISIBLE); break;
+                    case "짜증" : rec_a.setVisibility(View.VISIBLE); break;
+                }
             }
             most.setText(sum);
             return sum;

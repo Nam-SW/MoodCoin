@@ -15,7 +15,7 @@ public class TestLobbyActivity extends AppCompatActivity {
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentMain fragmentMain = new FragmentMain();
     private FragmentFriends fragmentCamera = new FragmentFriends();
-    private FragmentCall fragmentCall = new FragmentCall();
+    private FragmentSettings fragmentCall = new FragmentSettings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

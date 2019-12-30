@@ -18,7 +18,7 @@ public class LobbyActivity extends AppCompatActivity {
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentMain fragmentMain = new FragmentMain();
     private FragmentFriends fragmentFriends = new FragmentFriends();
-    private FragmentCall fragmentCall = new FragmentCall();
+    private FragmentSettings fragmentSettings = new FragmentSettings();
 
 
     @Override
@@ -34,6 +34,7 @@ public class LobbyActivity extends AppCompatActivity {
 
         fragmentMain.setArguments(bundle);
         fragmentFriends.setArguments(bundle);
+        fragmentSettings.setArguments(bundle);
 
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -56,7 +57,7 @@ public class LobbyActivity extends AppCompatActivity {
                     transaction.replace(R.id.frameLayout, fragmentFriends).commitAllowingStateLoss();
                     break;
                 case R.id.callItem:
-                    transaction.replace(R.id.frameLayout, fragmentCall).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameLayout, fragmentSettings).commitAllowingStateLoss();
                     break;
             }
             return true;
