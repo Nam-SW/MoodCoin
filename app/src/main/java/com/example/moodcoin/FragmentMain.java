@@ -729,14 +729,12 @@ public class FragmentMain extends Fragment {
                 Log.d("ㅁㅁ", "성범" + today);
                 Log.d("ㅁㅁ", "성범" + getRecentDay().equals(today));
                 if((hh >= 20 || (hh==19 && mm>=30))){
-                    if((getRecentDay1().equals(today))){
+                    if(!(getRecentDay1().equals(today))){
                         flagnum = 2;
                         new JSONTask().execute("http://10.120.72.146:3000/statemoney");
                         setRecentDay1();
                     }
                 }
-
-
             } else if(flagnum == 2){
                 tv1.setText(result);
             }
