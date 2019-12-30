@@ -413,7 +413,7 @@ public class FragmentMain extends Fragment {
                 addprice = get_price;
                 flagnum = 1;
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
-                Log.d("마마", "flagnum2" + flagnum);
+                Log.d("마마", "메오오오" + flagnum);
                 flagnum = 2;
                 new JSONTask().execute("http://10.120.72.146:3000/statemoney");
             }
