@@ -39,7 +39,6 @@
                 android:layout_marginBottom="10dp"
                 android:layout_width="340dp"
                 android:layout_height="50dp"/>
-
             <LinearLayout
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"

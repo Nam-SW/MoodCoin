@@ -409,7 +409,6 @@ public class FragmentMain extends Fragment {
                 String get_price = br.readLine();
                 br.close();
                 price.setText(get_price);
-
                 addprice = price.getText().toString();
                 flagnum = 1;
                 new JSONTask().execute("http://10.120.72.146:3000/mywallet");
