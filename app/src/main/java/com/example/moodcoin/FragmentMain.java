@@ -261,13 +261,6 @@ public class FragmentMain extends Fragment {
 
         pieChart = (PieChart)v.findViewById(R.id.piechart);
 
-        addprice = price.getText().toString();
-        flagnum = 1;
-        new JSONTask().execute("http://10.120.72.146:3000/mywallet");
-        Log.d("마마", "flagnum2" + flagnum);
-        flagnum = 2;
-        new JSONTask().execute("http://10.120.72.146:3000/statemoney");
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -416,6 +409,13 @@ public class FragmentMain extends Fragment {
                 String get_price = br.readLine();
                 br.close();
                 price.setText(get_price);
+
+                addprice = price.getText().toString();
+                flagnum = 1;
+                new JSONTask().execute("http://10.120.72.146:3000/mywallet");
+                Log.d("마마", "flagnum2" + flagnum);
+                flagnum = 2;
+                new JSONTask().execute("http://10.120.72.146:3000/statemoney");
             }
             catch (IOException e) {
                 e.printStackTrace();
