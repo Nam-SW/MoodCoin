@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,15 +34,18 @@ public class MainActivity extends Activity {
     String sendprice;
     String getperson;
     String sendperson;
+    int flagnum = 1;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sendperson= "5217453";
+        sendperson= "8422"; //inputextra 넣어주세요 성범아저씨
         btn1 = (Button)findViewById(R.id.button);
         tv1 = (TextView)findViewById(R.id.tv1);
         et1 = (EditText)findViewById(R.id.sendprice);
         et2 = (EditText)findViewById(R.id.getperson);
-
+        final SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        //new JSONTask().execute("http://10.120.72.146:3000");//AsyncTask 시작시킴
+        new JSONTask().execute("http://10.120.72.146:3000/");//AsyncTask 시작시킴
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,13 +55,24 @@ public class MainActivity extends Activity {
                 Log.d("Asdasdas", "시시"+ sendprice);
                 Log.d("Asdasdas", "발발" + getperson);
                 if(sendprice.length() != 0 && getperson.length()  != 0){
-                    new JSONTask().execute("http://10.120.72.146:3000");//AsyncTask 시작시킴
+                    flagnum = 2;
+                    new JSONTask().execute("http://10.120.72.146:3000/pay");//AsyncTask 시작시킴
                 }else{
                     Toast.makeText(getApplicationContext(), "값을 모두 입력해주세요", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new JSONTask().execute("http://10.120.72.146:3000/");//AsyncTask 시작시킴
+                swipeRefreshLayout.setRefreshing((false));
+            }
+
+        });
     }
+
     public class JSONTask extends AsyncTask<String, String, String> {
 
         @Override
@@ -64,16 +80,21 @@ public class MainActivity extends Activity {
             try {
                 //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.accumulate("sendperson", sendperson);
-                jsonObject.accumulate("getperson", getperson );
-                jsonObject.accumulate("sendprice", sendprice);
+                if(flagnum == 1){
+                    jsonObject.accumulate("sendperson", sendperson);
 
+                }else if(flagnum == 2){
+                    jsonObject.accumulate("sendperson", sendperson);
+                    jsonObject.accumulate("getperson", getperson );
+                    jsonObject.accumulate("sendprice", sendprice);
+                }
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
                 Log.d("asdsad", jsonObject.toString());
                 try{
-                    URL url = new URL("http://10.120.72.146:3000");
-                    url = new URL(urls[0]);
+                    URL url = new URL("http://10.120.72.146:3000/");
+                    if(flagnum == 2)  url = new URL("http://10.120.72.146:3000/pay");
+                    //URL url = new URL(urls[0]);
                     //연결을 함
                     con = (HttpURLConnection) url.openConnection();
 
