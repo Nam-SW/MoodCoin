@@ -16,6 +16,7 @@
  * tensorflow 2.0.0 ~
  * keras 2.2.5 ~
  * firebase_admin 3.2.0 ~ 
+ * discord.py 1.2.5 ~
  
 ## 안드로이드 최저사양 버전
  * Android Studio 3.5.3 
