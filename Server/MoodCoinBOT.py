@@ -38,17 +38,19 @@ async def on_message(message):
                 'talk': message.content
                 }
 
+        print(str(data['id']) + ': ', end='')
+
         pred = moodcoin.predict(data['talk'])[0]
         if pred == 0: # 대화한 내용이 뜻이 없는 업무적 내용 등일 경우
             print('감정 없음')
             return
 
-        database = db.reference(id).get()
+        database = db.reference(str(data['id'])).get()
         keys = list(database.keys())
         keys.remove('friends')
         today = max(keys) # 가장 최근 날짜
         database[today][emotion[pred]] += 1
-        db.reference(id).child(today).set(database[today])
+        db.reference(str(data['id'])).child(today).set(database[today])
         print(emotion[pred])
 
 
