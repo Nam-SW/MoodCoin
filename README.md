@@ -12,11 +12,10 @@
 
 ## 서버 필요 모듈
  * KoNLPy 0.5.1 ~
- * Flask 1.1.1 ~
  * tensorflow 2.0.0 ~
- * keras 2.2.5 ~
  * firebase_admin 3.2.0 ~ 
  * discord.py 1.2.5 ~
+ * discord 1.0.1 ~
  
 ## 안드로이드 최저사양 버전
  * Android Studio 3.5.3 
