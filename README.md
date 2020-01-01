@@ -16,13 +16,14 @@
  * tensorflow 2.0.0 ~
  * keras 2.2.5 ~
  * firebase_admin 3.2.0 ~ 
+ * discord.py 1.2.5 ~
  
 ## 안드로이드 최저사양 버전
- 앱 개발 팀에서 현 프로그램을 문제없이 사용할 수 있는 안드로이드 최소 버전을 적어주세요.
-
+ * Android Studio 3.5.3 
+ 
 ## 안드로이드 필요 API
- 앱 제작 팀에서 사용한 안드로이드 API들을 적어주세요.
+ * Firebase
 
 ## 기타 참조
- [notion 링크](https://www.notion.so/namseungwoo/MoodCoin-GSM-Festival-24fde21cf9a84f5ebeaeb28e6469cf6f)
+ [notion 링크](https://www.notion.so/namseungwoo/MoodCoin-GSM-Festival-24fde21cf9a84f5ebeaeb28e6469cf6f)  
  [시발비용이란?](https://ko.wikipedia.org/wiki/%EC%8B%9C%EB%B0%9C_%EB%B9%84%EC%9A%A9)
