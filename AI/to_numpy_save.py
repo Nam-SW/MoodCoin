@@ -21,10 +21,9 @@ print(len(X), len(Y))
 idx = Y.index('  ')
 X.pop(idx)
 Y.pop(idx)
-print(len(X), len(Y))
-# t = list(Y)
-# for i in range(6):
-#     print(t.count(i), end=' ')
+print(set(Y))
+for i in range(6):
+    print(Y.count(i), end=' ')
 # np.save('./dataset/X_data.npy', X, allow_pickle=True)
 # np.save('./dataset/Y_data.npy', Y, allow_pickle=True)
 with open('./dataset/x_data.pickle', 'wb') as f:
@@ -39,6 +38,3 @@ with open('./dataset/x_data.pickle', 'rb') as f:
     x = pickle.load(f)
 with open('./dataset/y_data.pickle', 'rb') as f:
     y = pickle.load(f)
-
-print(x[:5])
-print(y[:5])
