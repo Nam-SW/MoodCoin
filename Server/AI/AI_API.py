@@ -33,13 +33,14 @@ class MoodCoin:
         string으로 한문장만 또는 list, tuple로 여러 문장이 가능.
         차피 predict에서 사용할 내부 함수라 사용장가 알 필요는 없음.
         '''
-        # word = {v:k for k,v in self.tokenizer.word_index.items()}
+        word = {v:k for k,v in self.tokenizer.word_index.items()}
 
         if isinstance(data, str):
             data = re.compile('[^ 가-힣]+').sub('', data.strip())
             data = self.otk.morphs(data, stem=True)
             data = [word for word in data if not word in self.stopwords]
             data = sum(self.tokenizer.texts_to_sequences(data), [])
+            print(' '.join([word[i] for i in data]))
             data = pad_sequences([data], maxlen=self.maxlen)
         
         elif isinstance(data, list) or isinstance(data, tuple):
@@ -50,6 +51,7 @@ class MoodCoin:
                 d = self.otk.morphs(d, stem=True)
                 d = [word for word in d if not word in self.stopwords]
                 d = sum(self.tokenizer.texts_to_sequences(d), [])
+                print(' '.join([word[i] for i in d]))
                 temp.append(d)
             data = pad_sequences(temp, maxlen=self.maxlen)
         
