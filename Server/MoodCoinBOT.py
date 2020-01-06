@@ -1,10 +1,10 @@
-import discord
+﻿import discord
 from firebase_admin import credentials, db, initialize_app
 from AI.AI_API import MoodCoin
 
 client = discord.Client()
-# 생성된 토큰을 입력해준다.
-token = "NjYxODAyNzgyNjA0Mzk0NTE2.XhMl6g.Tu2EYg5YxBZijcJ4CpZgT4AoSZQ"
+# 토큰은 봇마다 다르므로, 디스코드에서 봇을 생성해 토큰을 복사해 아래 token 변수에 저장해주세요.
+token = "NjYxODAyNzgyNjA0Mzk0NTE2.XhMyUw.C7CRjFiTQ1BOSGxCIsbNa5kWhdo"
 
 # AI 필요 변수
 moodcoin = MoodCoin()
