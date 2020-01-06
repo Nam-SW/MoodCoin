@@ -4,7 +4,7 @@ from AI.AI_API import MoodCoin
 
 client = discord.Client()
 # 생성된 토큰을 입력해준다.
-token = "NjYxODAyNzgyNjA0Mzk0NTE2.XgwuMg.uCjsPO4BfET43BQD7xQun6LRNpE"
+token = "NjYxODAyNzgyNjA0Mzk0NTE2.XhLauw.yleBUN1ok6onnbuMSH5OfuMUSdw"
 
 # AI 필요 변수
 moodcoin = MoodCoin()
@@ -38,11 +38,11 @@ async def on_message(message):
                 'talk': message.content
                 }
 
-        print(str(data['id']) + ': ', end='')
+        print(str(data['id']) + ': ' + data['talk'])
 
         pred = moodcoin.predict(data['talk'])[0]
         if pred == 0: # 대화한 내용이 뜻이 없는 업무적 내용 등일 경우
-            print('감정 없음')
+            print('감정 없음\n')
             return
 
         database = db.reference(str(data['id'])).get()
@@ -51,7 +51,7 @@ async def on_message(message):
         today = max(keys) # 가장 최근 날짜
         database[today][emotion[pred]] += 1
         db.reference(str(data['id'])).child(today).set(database[today])
-        print(emotion[pred])
+        print(emotion[pred] + '\n')
 
 
 
