@@ -4,7 +4,7 @@ from AI.AI_API import MoodCoin
 
 client = discord.Client()
 # 생성된 토큰을 입력해준다.
-token = "NjYxODAyNzgyNjA0Mzk0NTE2.XhLauw.yleBUN1ok6onnbuMSH5OfuMUSdw"
+token = "NjYxODAyNzgyNjA0Mzk0NTE2.XhMl6g.Tu2EYg5YxBZijcJ4CpZgT4AoSZQ"
 
 # AI 필요 변수
 moodcoin = MoodCoin()
