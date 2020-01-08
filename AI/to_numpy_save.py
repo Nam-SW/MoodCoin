@@ -13,15 +13,16 @@ data = pd.read_excel('./dataset/dataset.xlsx')
 # print(len(Y))
 data = data.dropna(how='any')
 
+data2 = data[data['Y_data'] == 0].sample(frac=1).iloc[:100]
+for i in range(1, 6):
+    data2 = pd.concat([data2, data[data['Y_data'] == i].sample(frac=1).iloc[:100]])
+data = data2
+
 mc = MoodCoin()
 X = [list(i) for i in mc.prepocessing(list(data['X_data']))]
 Y = list(data['Y_data'])
 
 print(len(X), len(Y))
-idx = Y.index('  ')
-X.pop(idx)
-Y.pop(idx)
-print(set(Y))
 for i in range(6):
     print(Y.count(i), end=' ')
 # np.save('./dataset/X_data.npy', X, allow_pickle=True)
